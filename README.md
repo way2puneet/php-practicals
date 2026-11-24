@@ -1,7 +1,7 @@
 # Website Development Using PHP · Practical Programs
 
 Appendix website for *Website Development Using PHP* by Dr. Puneet Kumar.
-All 25 practicals of Paper CSA-DSC-6(Maj)-602P, each with the complete code, real screenshots of its output,
+All 25 practicals of the book, each with the complete code, real screenshots of its output,
 the explanation from the book, common mistakes, viva questions, and a Run button that runs real PHP 8.3 in the
 browser (php-wasm, loaded from the jsDelivr CDN). The four MySQL practicals show recorded output instead.
 
