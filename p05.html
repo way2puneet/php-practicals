@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practical 5: Write a PHP code to find the greatest number of any three given numbers using nested-if. · PHP</title>
+<meta name="description" content="To write a PHP program that finds the greatest of three numbers using nested if.">
+<link rel="stylesheet" href="assets/style.css?v=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233a50c9'/%3E%3Ctext x='16' y='21' font-family='Arial' font-size='11' font-weight='700' fill='white' text-anchor='middle'%3EPHP%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="index.html">PHP <span>· Practicals</span></a>
+  <nav class="topnav"><a href="index.html">Programs</a><a href="setup.html">Setup</a></nav>
+</div></header>
+<main class="wrap">
+<div class="kicker">Practical 5 of 25</div>
+<h1>Write a PHP code to find the greatest number of any three given numbers using nested-if.</h1>
+<p class="lead">Program 3.4: Finding the Greatest of Three Numbers Using Nested if</p>
+<div class="meta"><span class="chip">Book: Program 3.4 (Chapter 3)</span><span class="chip">Runs in this page</span></div>
+<div class="aim"><b>Aim</b>To write a PHP program that finds the greatest of three numbers using nested if.</div>
+<nav class="toc"><a href="#learn">Concepts</a><a href="#code">Code</a><a href="#output">Output</a><a href="#how">How it works</a><a href="#run">Run it</a><a href="#xampp">In XAMPP</a><a href="#mistakes">Common mistakes</a><a href="#viva">Viva</a></nav>
+<h2 id="learn">Concepts used</h2>
+<p>Nested if-else, the comparison operator &gt;=, handling equal values.</p>
+<p><b>Test data:</b> First number: 25; second number: 42; third number: 17.</p>
+<h3>Logic</h3><ol class="steps"><li>Store the three numbers in <code>$a</code>, <code>$b</code> and <code>$c</code>.</li><li>If <code>$a</code> is greater than or equal to <code>$b</code>, compare <code>$a</code> with <code>$c</code>; the larger of the two is the greatest.</li><li>Otherwise, compare <code>$b</code> with <code>$c</code>; the larger of the two is the greatest.</li><li>Display the greatest number.</li></ol>
+<h2 id="code">Code</h2>
+<div class="code"><div class="code-tabs" role="tablist"><button role="tab" aria-selected="true">greatest.php</button><span class="spacer"></span><button class="act dl" title="Download this file">Download</button><button class="act copy" title="Copy this file">Copy</button></div><div class="code-panel active" data-src="code/p05__greatest.php" data-name="greatest.php"><pre class="lang-php"><span class="ln"><span class="t-dir">&lt;!DOCTYPE html&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">html</span> <span class="t-attr">lang</span>=<span class="t-val">"en"</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">head</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">meta</span> <span class="t-attr">charset</span>=<span class="t-val">"UTF-8"</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">title</span><span class="t-punc">&gt;</span>Greatest of Three Numbers<span class="t-punc">&lt;/</span><span class="t-tag">title</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">head</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">body</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-dir">&lt;?php</span></span><span class="ln">    <span class="t-attr">$a</span> = <span class="t-num">25</span>;</span><span class="ln">    <span class="t-attr">$b</span> = <span class="t-num">42</span>;</span><span class="ln">    <span class="t-attr">$c</span> = <span class="t-num">17</span>;</span><span class="ln"> </span><span class="ln">    <span class="t-kw">if</span> (<span class="t-attr">$a</span> &gt;= <span class="t-attr">$b</span>) {</span><span class="ln">        <span class="t-kw">if</span> (<span class="t-attr">$a</span> &gt;= <span class="t-attr">$c</span>) {</span><span class="ln">            <span class="t-attr">$greatest</span> = <span class="t-attr">$a</span>;</span><span class="ln">        } <span class="t-kw">else</span> {</span><span class="ln">            <span class="t-attr">$greatest</span> = <span class="t-attr">$c</span>;</span><span class="ln">        }</span><span class="ln">    } <span class="t-kw">else</span> {</span><span class="ln">        <span class="t-kw">if</span> (<span class="t-attr">$b</span> &gt;= <span class="t-attr">$c</span>) {</span><span class="ln">            <span class="t-attr">$greatest</span> = <span class="t-attr">$b</span>;</span><span class="ln">        } <span class="t-kw">else</span> {</span><span class="ln">            <span class="t-attr">$greatest</span> = <span class="t-attr">$c</span>;</span><span class="ln">        }</span><span class="ln">    }</span><span class="ln"> </span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"Numbers: $a, $b and $c&lt;br&gt;"</span>;</span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"The greatest number is $greatest."</span>;</span><span class="ln">    <span class="t-dir">?&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">body</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">html</span><span class="t-punc">&gt;</span></span></pre></div></div>
+<h2 id="output">Output</h2>
+<p class="tryhint" style="margin-top:0">These are real screenshots, taken by running the program with the test data.</p><figure class="shot"><div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">localhost/phpbook/…/greatest.php</span></div><img src="img/p05_1.png" alt="Output" loading="lazy"><figcaption>Output</figcaption></figure>
+<h3>Understanding the output</h3><p>Of the three numbers, 42 is the largest, and it was reached through the outer else block and the inner if block. The path taken for other sets of values is given in Section 3.4.4.</p>
+<h2 id="how">How it works</h2><p>The outer condition compares the first two numbers. For the test data, 25 &gt;= 42 is false, so the outer else block is entered. Inside it, the inner condition 42 &gt;= 17 is true, so <code>$greatest</code> receives 42. The inner if-else of the outer if block is not tested at all, because control never enters that block. Every path through the structure assigns a value to <code>$greatest</code>, so it is always defined before the last echo statement.</p>
+<h2 id="run">Run it yourself</h2>
+<div class="php-runner">
+<script type="application/json">{"entries": ["greatest.php"], "dirs": [], "folder": "ch03"}</script>
+<div class="pr-tabs"><button type="button" data-file="greatest.php" aria-selected="true">greatest.php</button></div>
+<textarea data-file="greatest.php" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="greatest.php (editable)" rows="26">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Greatest of Three Numbers&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;?php
+    $a = 25;
+    $b = 42;
+    $c = 17;
+
+    if ($a &gt;= $b) {
+        if ($a &gt;= $c) {
+            $greatest = $a;
+        } else {
+            $greatest = $c;
+        }
+    } else {
+        if ($b &gt;= $c) {
+            $greatest = $b;
+        } else {
+            $greatest = $c;
+        }
+    }
+
+    echo &quot;Numbers: $a, $b and $c&lt;br&gt;&quot;;
+    echo &quot;The greatest number is $greatest.&quot;;
+    ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+<div class="runner-bar"><span class="pr-name">greatest.php</span>
+  <button class="btn reset-code" type="button">Reset code</button><button class="btn clear-state" type="button" title="Like opening a new private window">Clear cookies &amp; session</button><button class="btn run" type="button">Run ▶</button></div>
+<div class="status">Press <b>Run</b> to open the page in the browser below. You can edit any file first.</div>
+<div class="pr-browser">
+  <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url pr-url">localhost/phpbook/ch03/greatest.php</span>
+  <span class="pr-view"><button type="button" data-view="page" aria-selected="true">Page</button><button type="button" data-view="source" aria-selected="false">HTML sent</button></span></div>
+  <div class="pr-page"><iframe title="Output of the program" sandbox="allow-same-origin allow-forms"></iframe></div>
+  <div class="pr-source" hidden><pre></pre></div>
+  <div class="pr-state" hidden></div>
+</div>
+</div>
+<p class="tryhint">Real PHP 8.3 runs inside your browser (nothing is sent to a server). Forms, links, cookies and sessions work as they do in XAMPP. The first run downloads PHP, so it needs internet and takes a few seconds.</p>
+<p style="margin:14px 0 4px"><b>Try this:</b></p><ul class="tries"><li>Try the numbers 42, 25, 17 and then 17, 25, 42. Is the answer always 42?</li><li>Try three equal numbers, for example 10, 10, 10.</li></ul>
+<h2 id="xampp">Running it in XAMPP</h2><p>Save the file in C:\xampp\htdocs\phpbook\ch03 and open http://<code>localhost/phpbook/ch03/greatest.php</code>.</p>
+<h2 id="mistakes">Common mistakes</h2><ul><li>Using &gt; instead of &gt;=, which gives a wrong result when two of the numbers are equal and largest.</li><li>Placing the inner else at the wrong level, which attaches it to the outer if.</li><li>Forgetting one of the four assignments, so that <code>$greatest</code> is undefined for some inputs.</li></ul>
+<h2 id="viva">Viva questions</h2><details><summary>What is a nested if?</summary><div>An if statement written inside another if or else block.</div></details><details><summary>Can the greatest number be found without nested if?</summary><div>Yes, with an if...elseif ladder using &&, or simply with the built-in <code>max($a, $b, $c)</code>.</div></details><details><summary>What is the difference between = and ==?</summary><div>= assigns a value; == compares two values.</div></details>
+<nav class="pnav"><a href="p04.html"><small>← Practical 4</small>Create a PHP code to check whether a number is even or odd.</a><a class="next" href="p06.html"><small>Practical 6 →</small>Write a PHP code to print the day of the week using a switch-case statement.</a></nav>
+</main>
+<div class="wrap"><footer>Appendix to <i>Website Development Using PHP</i> by Dr. Puneet Kumar.</footer></div>
+<script src="assets/app.js?v=1"></script>
+<script src="assets/run.js?v=1"></script>
+</body>
+</html>

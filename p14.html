@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practical 14: Write a PHP code to demonstrate file inclusion function – require(). · PHP</title>
+<meta name="description" content="To write a PHP program that demonstrates the require statement by loading an essential configuration file.">
+<link rel="stylesheet" href="assets/style.css?v=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233a50c9'/%3E%3Ctext x='16' y='21' font-family='Arial' font-size='11' font-weight='700' fill='white' text-anchor='middle'%3EPHP%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="index.html">PHP <span>· Practicals</span></a>
+  <nav class="topnav"><a href="index.html">Programs</a><a href="setup.html">Setup</a></nav>
+</div></header>
+<main class="wrap">
+<div class="kicker">Practical 14 of 25</div>
+<h1>Write a PHP code to demonstrate file inclusion function – require().</h1>
+<p class="lead">Program 4.6: Demonstrating require</p>
+<div class="meta"><span class="chip">Book: Program 4.6 (Chapter 4)</span><span class="chip">Runs in this page</span></div>
+<div class="aim"><b>Aim</b>To write a PHP program that demonstrates the require statement by loading an essential configuration file.</div>
+<nav class="toc"><a href="#learn">Concepts</a><a href="#code">Code</a><a href="#output">Output</a><a href="#how">How it works</a><a href="#run">Run it</a><a href="#xampp">In XAMPP</a><a href="#mistakes">Common mistakes</a><a href="#viva">Viva</a></nav>
+<h2 id="learn">Concepts used</h2>
+<p>The require statement, an essential configuration file, constants and variables shared between files.</p>
+<p><b>Test data:</b> College name Green Valley College; academic year 2026-27; course BCA, set in the configuration file.</p>
+<h3>Logic</h3><ol class="steps"><li>Create <code>includes/config.php</code>, which defines the settings used by the page.</li><li>In <code>require-demo.php</code>, load the configuration with require.</li><li>Print a message confirming that the required file was loaded, and use the settings to continue processing.</li></ol>
+<h2 id="code">Code</h2>
+<p class="tryhint" style="margin:0 0 6px">Create a folder named <code>includes</code> next to the main file, and save the shared files in it.</p><div class="code"><div class="code-tabs" role="tablist"><button role="tab" aria-selected="true">require-demo.php</button><button role="tab" aria-selected="false">includes/config.php</button><span class="spacer"></span><button class="act dl" title="Download this file">Download</button><button class="act copy" title="Copy this file">Copy</button></div><div class="code-panel active" data-src="code/p14__require-demo.php" data-name="require-demo.php"><pre class="lang-php"><span class="ln"><span class="t-dir">&lt;?php</span></span><span class="ln"><span class="t-kw">require</span> <span class="t-str">"includes/config.php"</span>;    <span class="t-com">// the page cannot work without these settings</span></span><span class="ln"><span class="t-dir">?&gt;</span></span><span class="ln"><span class="t-dir">&lt;!DOCTYPE html&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">html</span> <span class="t-attr">lang</span>=<span class="t-val">"en"</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">head</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">meta</span> <span class="t-attr">charset</span>=<span class="t-val">"UTF-8"</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">title</span><span class="t-punc">&gt;</span>require Demonstration<span class="t-punc">&lt;/</span><span class="t-tag">title</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">head</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">body</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-dir">&lt;?php</span></span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"&lt;p&gt;Required file loaded.&lt;/p&gt;"</span>;</span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"&lt;p&gt;Page processing continues for $collegeName.&lt;/p&gt;"</span>;</span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"&lt;p&gt;Course: $course, Academic Year: "</span> . ACADEMIC_YEAR . <span class="t-str">"&lt;/p&gt;"</span>;</span><span class="ln">    <span class="t-dir">?&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">body</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">html</span><span class="t-punc">&gt;</span></span></pre></div><div class="code-panel" data-src="code/p14__includes__config.php" data-name="config.php"><pre class="lang-php"><span class="ln"><span class="t-dir">&lt;?php</span></span><span class="ln"><span class="t-com">// Essential settings needed by every page of the application</span></span><span class="ln"><span class="t-kw">const</span> ACADEMIC_YEAR = <span class="t-str">"2026-27"</span>;</span><span class="ln"><span class="t-attr">$collegeName</span> = <span class="t-str">"Green Valley College"</span>;</span><span class="ln"><span class="t-attr">$course</span> = <span class="t-str">"BCA"</span>;</span></pre></div></div>
+<h2 id="output">Output</h2>
+<p class="tryhint" style="margin-top:0">These are real screenshots, taken by running the program with the test data.</p><figure class="shot"><div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">localhost/phpbook/…/require-demo.php</span></div><img src="img/p14_1.png" alt="Output" loading="lazy"><figcaption>Output</figcaption></figure>
+<h3>Understanding the output</h3><p>All three lines depend on the configuration file: the college name, the course and the academic year were defined there and used in the main file. The behaviour of this page when the configuration file is missing, compared with the behaviour of include, is explained in Section 4.7.2.</p>
+<h2 id="how">How it works</h2><p>The require statement at the top inserts <code>includes/config.php</code>, which defines the constant ACADEMIC_YEAR and the variables <code>$collegeName</code> and <code>$course</code>. The configuration file produces no output. Since require stops the script when the file is missing, the first echo statement can be reached only if the file was loaded; the message &quot;Required file loaded.&quot; therefore confirms the successful inclusion. The next statements use the settings defined in the required file.</p>
+<h2 id="run">Run it yourself</h2>
+<div class="php-runner">
+<script type="application/json">{"entries": ["require-demo.php"], "dirs": [], "folder": "ch04"}</script>
+<div class="pr-tabs"><button type="button" data-file="require-demo.php" aria-selected="true">require-demo.php</button><button type="button" data-file="includes/config.php" aria-selected="false">includes/config.php</button></div>
+<textarea data-file="require-demo.php" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="require-demo.php (editable)" rows="19">&lt;?php
+require &quot;includes/config.php&quot;;    // the page cannot work without these settings
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;require Demonstration&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;?php
+    echo &quot;&lt;p&gt;Required file loaded.&lt;/p&gt;&quot;;
+    echo &quot;&lt;p&gt;Page processing continues for $collegeName.&lt;/p&gt;&quot;;
+    echo &quot;&lt;p&gt;Course: $course, Academic Year: &quot; . ACADEMIC_YEAR . &quot;&lt;/p&gt;&quot;;
+    ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea><textarea data-file="includes/config.php" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="includes/config.php (editable)" hidden rows="10">&lt;?php
+// Essential settings needed by every page of the application
+const ACADEMIC_YEAR = &quot;2026-27&quot;;
+$collegeName = &quot;Green Valley College&quot;;
+$course = &quot;BCA&quot;;</textarea>
+<div class="runner-bar"><span class="pr-name">require-demo.php</span>
+  <button class="btn reset-code" type="button">Reset code</button><button class="btn clear-state" type="button" title="Like opening a new private window">Clear cookies &amp; session</button><button class="btn run" type="button">Run ▶</button></div>
+<div class="status">Press <b>Run</b> to open the page in the browser below. You can edit any file first.</div>
+<div class="pr-browser">
+  <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url pr-url">localhost/phpbook/ch04/require-demo.php</span>
+  <span class="pr-view"><button type="button" data-view="page" aria-selected="true">Page</button><button type="button" data-view="source" aria-selected="false">HTML sent</button></span></div>
+  <div class="pr-page"><iframe title="Output of the program" sandbox="allow-same-origin allow-forms"></iframe></div>
+  <div class="pr-source" hidden><pre></pre></div>
+  <div class="pr-state" hidden></div>
+</div>
+</div>
+<p class="tryhint">Real PHP 8.3 runs inside your browser (nothing is sent to a server). Forms, links, cookies and sessions work as they do in XAMPP. The first run downloads PHP, so it needs internet and takes a few seconds.</p>
+<p style="margin:14px 0 4px"><b>Try this:</b></p><ul class="tries"><li>Change the academic year in <code>includes/config.php</code>.</li><li>Change the require to <code>require "includes/conf.php";</code> (a wrong name). The page stops with a fatal error.</li></ul>
+<h2 id="xampp">Running it in XAMPP</h2><p>Save <code>config.php</code> in C:\xampp\htdocs\phpbook\ch04\includes and <code>require-demo.php</code> in C:\xampp\htdocs\phpbook\ch04, and open http://<code>localhost/phpbook/ch04/require-demo.php</code>.</p>
+<h2 id="mistakes">Common mistakes</h2><ul><li>Using include for an essential file, so that the page continues and shows incomplete or wrong results when the file is missing.</li><li>Writing a closing ?&gt; followed by blank lines in a configuration file, which sends unwanted blank output before the page.</li><li>Assuming that require and include differ when the file exists; in that case, they behave in the same way.</li></ul>
+<h2 id="viva">Viva questions</h2><details><summary>Difference between include and require?</summary><div>If the file is missing, include gives a warning and continues; require gives a fatal error and stops the script.</div></details><details><summary>When should require be used?</summary><div>For files without which the page cannot work, such as configuration or database connection files.</div></details><details><summary>What do include_once and require_once do?</summary><div>They load a file only once, even if the statement is reached again.</div></details>
+<nav class="pnav"><a href="p13.html"><small>← Practical 13</small>Write a PHP code to demonstrate file inclusion function – include().</a><a class="next" href="p15.html"><small>Practical 15 →</small>Create a form (using GET/POST) and display submitted user data on another page.</a></nav>
+</main>
+<div class="wrap"><footer>Appendix to <i>Website Development Using PHP</i> by Dr. Puneet Kumar.</footer></div>
+<script src="assets/app.js?v=1"></script>
+<script src="assets/run.js?v=1"></script>
+</body>
+</html>

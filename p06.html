@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practical 6: Write a PHP code to print the day of the week using a switch-case statement. · PHP</title>
+<meta name="description" content="To write a PHP program that prints the name of the day of the week for a given day number using switch-case.">
+<link rel="stylesheet" href="assets/style.css?v=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233a50c9'/%3E%3Ctext x='16' y='21' font-family='Arial' font-size='11' font-weight='700' fill='white' text-anchor='middle'%3EPHP%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="index.html">PHP <span>· Practicals</span></a>
+  <nav class="topnav"><a href="index.html">Programs</a><a href="setup.html">Setup</a></nav>
+</div></header>
+<main class="wrap">
+<div class="kicker">Practical 6 of 25</div>
+<h1>Write a PHP code to print the day of the week using a switch-case statement.</h1>
+<p class="lead">Program 3.5: Printing the Day of the Week Using switch-case</p>
+<div class="meta"><span class="chip">Book: Program 3.5 (Chapter 3)</span><span class="chip">Runs in this page</span></div>
+<div class="aim"><b>Aim</b>To write a PHP program that prints the name of the day of the week for a given day number using switch-case.</div>
+<nav class="toc"><a href="#learn">Concepts</a><a href="#code">Code</a><a href="#output">Output</a><a href="#how">How it works</a><a href="#run">Run it</a><a href="#xampp">In XAMPP</a><a href="#mistakes">Common mistakes</a><a href="#viva">Viva</a></nav>
+<h2 id="learn">Concepts used</h2>
+<p>The switch statement, case labels, break, default.</p>
+<p><b>Test data:</b> Day number: 3. Accepted range: 1 (Monday) to 7 (Sunday).</p>
+<h3>Logic</h3><ol class="steps"><li>Store the day number.</li><li>Compare it with the cases 1 to 7 and store the matching day name.</li><li>If no case matches, store an error message.</li><li>Display the result.</li></ol>
+<h2 id="code">Code</h2>
+<div class="code"><div class="code-tabs" role="tablist"><button role="tab" aria-selected="true">day-of-week.php</button><span class="spacer"></span><button class="act dl" title="Download this file">Download</button><button class="act copy" title="Copy this file">Copy</button></div><div class="code-panel active" data-src="code/p06__day-of-week.php" data-name="day-of-week.php"><pre class="lang-php"><span class="ln"><span class="t-dir">&lt;!DOCTYPE html&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">html</span> <span class="t-attr">lang</span>=<span class="t-val">"en"</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">head</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">meta</span> <span class="t-attr">charset</span>=<span class="t-val">"UTF-8"</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">title</span><span class="t-punc">&gt;</span>Day of the Week<span class="t-punc">&lt;/</span><span class="t-tag">title</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">head</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">body</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-dir">&lt;?php</span></span><span class="ln">    <span class="t-attr">$dayNumber</span> = <span class="t-num">3</span>;</span><span class="ln"> </span><span class="ln">    <span class="t-kw">switch</span> (<span class="t-attr">$dayNumber</span>) {</span><span class="ln">        <span class="t-kw">case</span> <span class="t-num">1</span>:</span><span class="ln">            <span class="t-attr">$dayName</span> = <span class="t-str">"Monday"</span>;</span><span class="ln">            <span class="t-kw">break</span>;</span><span class="ln">        <span class="t-kw">case</span> <span class="t-num">2</span>:</span><span class="ln">            <span class="t-attr">$dayName</span> = <span class="t-str">"Tuesday"</span>;</span><span class="ln">            <span class="t-kw">break</span>;</span><span class="ln">        <span class="t-kw">case</span> <span class="t-num">3</span>:</span><span class="ln">            <span class="t-attr">$dayName</span> = <span class="t-str">"Wednesday"</span>;</span><span class="ln">            <span class="t-kw">break</span>;</span><span class="ln">        <span class="t-kw">case</span> <span class="t-num">4</span>:</span><span class="ln">            <span class="t-attr">$dayName</span> = <span class="t-str">"Thursday"</span>;</span><span class="ln">            <span class="t-kw">break</span>;</span><span class="ln">        <span class="t-kw">case</span> <span class="t-num">5</span>:</span><span class="ln">            <span class="t-attr">$dayName</span> = <span class="t-str">"Friday"</span>;</span><span class="ln">            <span class="t-kw">break</span>;</span><span class="ln">        <span class="t-kw">case</span> <span class="t-num">6</span>:</span><span class="ln">            <span class="t-attr">$dayName</span> = <span class="t-str">"Saturday"</span>;</span><span class="ln">            <span class="t-kw">break</span>;</span><span class="ln">        <span class="t-kw">case</span> <span class="t-num">7</span>:</span><span class="ln">            <span class="t-attr">$dayName</span> = <span class="t-str">"Sunday"</span>;</span><span class="ln">            <span class="t-kw">break</span>;</span><span class="ln">        <span class="t-kw">default</span>:</span><span class="ln">            <span class="t-attr">$dayName</span> = <span class="t-str">""</span>;</span><span class="ln">    }</span><span class="ln"> </span><span class="ln">    <span class="t-kw">if</span> (<span class="t-attr">$dayName</span> != <span class="t-str">""</span>) {</span><span class="ln">        <span class="t-kw">echo</span> <span class="t-str">"Day $dayNumber is $dayName."</span>;</span><span class="ln">    } <span class="t-kw">else</span> {</span><span class="ln">        <span class="t-kw">echo</span> <span class="t-str">"Invalid day number $dayNumber. Enter a number from 1 to 7."</span>;</span><span class="ln">    }</span><span class="ln">    <span class="t-dir">?&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">body</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">html</span><span class="t-punc">&gt;</span></span></pre></div></div>
+<h2 id="output">Output</h2>
+<p class="tryhint" style="margin-top:0">These are real screenshots, taken by running the program with the test data.</p><figure class="shot"><div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">localhost/phpbook/…/day-of-week.php</span></div><img src="img/p06_1.png" alt="Output" loading="lazy"><figcaption>Output</figcaption></figure>
+<h3>Understanding the output</h3><p>The number 3 matched the third case, so &quot;Wednesday&quot; was printed. The outputs for other day numbers, including the boundary values 1 and 7 and the invalid values 0 and 8, are given in Table 3.5.</p>
+<p class="tcap">Table 3.5: Test Cases for Program 3.5</p><table class="t"><tr><th>Day Number</th><th>Matching Case</th><th>Output</th></tr><tr><td>1</td><td>case 1</td><td>Day 1 is Monday.</td></tr><tr><td>3</td><td>case 3</td><td>Day 3 is Wednesday.</td></tr><tr><td>7</td><td>case 7</td><td>Day 7 is Sunday.</td></tr><tr><td>0</td><td>default</td><td>Invalid day number 0. Enter a number from 1 to 7.</td></tr><tr><td>8</td><td>default</td><td>Invalid day number 8. Enter a number from 1 to 7.</td></tr></table>
+<h2 id="how">How it works</h2><p>The value 3 is compared with the cases from the top. It does not match 1 or 2, but matches case 3, so <code>$dayName</code> becomes &quot;Wednesday&quot;, and break ends the switch statement at once. For a number outside 1 to 7, no case matches, and the default block stores an empty string. The if-else statement after the switch then prints either the day name or the error message, so the output for an invalid number is clearly different from the output for a valid one.</p>
+<h2 id="run">Run it yourself</h2>
+<div class="php-runner">
+<script type="application/json">{"entries": ["day-of-week.php"], "dirs": [], "folder": "ch03"}</script>
+<div class="pr-tabs"><button type="button" data-file="day-of-week.php" aria-selected="true">day-of-week.php</button></div>
+<textarea data-file="day-of-week.php" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="day-of-week.php (editable)" rows="26">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Day of the Week&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;?php
+    $dayNumber = 3;
+
+    switch ($dayNumber) {
+        case 1:
+            $dayName = &quot;Monday&quot;;
+            break;
+        case 2:
+            $dayName = &quot;Tuesday&quot;;
+            break;
+        case 3:
+            $dayName = &quot;Wednesday&quot;;
+            break;
+        case 4:
+            $dayName = &quot;Thursday&quot;;
+            break;
+        case 5:
+            $dayName = &quot;Friday&quot;;
+            break;
+        case 6:
+            $dayName = &quot;Saturday&quot;;
+            break;
+        case 7:
+            $dayName = &quot;Sunday&quot;;
+            break;
+        default:
+            $dayName = &quot;&quot;;
+    }
+
+    if ($dayName != &quot;&quot;) {
+        echo &quot;Day $dayNumber is $dayName.&quot;;
+    } else {
+        echo &quot;Invalid day number $dayNumber. Enter a number from 1 to 7.&quot;;
+    }
+    ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+<div class="runner-bar"><span class="pr-name">day-of-week.php</span>
+  <button class="btn reset-code" type="button">Reset code</button><button class="btn clear-state" type="button" title="Like opening a new private window">Clear cookies &amp; session</button><button class="btn run" type="button">Run ▶</button></div>
+<div class="status">Press <b>Run</b> to open the page in the browser below. You can edit any file first.</div>
+<div class="pr-browser">
+  <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url pr-url">localhost/phpbook/ch03/day-of-week.php</span>
+  <span class="pr-view"><button type="button" data-view="page" aria-selected="true">Page</button><button type="button" data-view="source" aria-selected="false">HTML sent</button></span></div>
+  <div class="pr-page"><iframe title="Output of the program" sandbox="allow-same-origin allow-forms"></iframe></div>
+  <div class="pr-source" hidden><pre></pre></div>
+  <div class="pr-state" hidden></div>
+</div>
+</div>
+<p class="tryhint">Real PHP 8.3 runs inside your browser (nothing is sent to a server). Forms, links, cookies and sessions work as they do in XAMPP. The first run downloads PHP, so it needs internet and takes a few seconds.</p>
+<p style="margin:14px 0 4px"><b>Try this:</b></p><ul class="tries"><li>Change the day number to 1, 7, 0 and 8.</li><li>Remove one <code>break;</code> and see how the output changes (fall-through).</li></ul>
+<h2 id="xampp">Running it in XAMPP</h2><p>Save the file in C:\xampp\htdocs\phpbook\ch03 and open http://<code>localhost/phpbook/ch03/day-of-week.php</code>.</p>
+<h2 id="mistakes">Common mistakes</h2><ul><li>Omitting break after a case, so that the day name is replaced by the name in the following case. For example, without break after case 3, the value 3 would finally store &quot;Thursday&quot;.</li><li>Writing a semicolon instead of a colon after a case value, as in case 3;. The colon is the standard form and should always be used.</li><li>Writing a condition such as case <code>$dayNumber</code> &gt; 7: and expecting a range check; switch is designed for matching exact values.</li></ul>
+<h2 id="viva">Viva questions</h2><details><summary>What is switch-case used for?</summary><div>To choose one block of code out of many, based on the value of one expression.</div></details><details><summary>Why is <code>break</code> needed in each case?</summary><div>Without break, execution continues into the next case (fall-through).</div></details><details><summary>What is the default case?</summary><div>The block that runs when no case matches.</div></details>
+<nav class="pnav"><a href="p05.html"><small>← Practical 5</small>Write a PHP code to find the greatest number of any three given numbers using nested-if.</a><a class="next" href="p07.html"><small>Practical 7 →</small>Write a PHP code to print multiplication table using loops.</a></nav>
+</main>
+<div class="wrap"><footer>Appendix to <i>Website Development Using PHP</i> by Dr. Puneet Kumar.</footer></div>
+<script src="assets/app.js?v=1"></script>
+<script src="assets/run.js?v=1"></script>
+</body>
+</html>

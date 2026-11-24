@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practical 25: Write a PHP code to create and throw a user-defined exception class. · PHP</title>
+<meta name="description" content="To write a PHP program that creates a user-defined exception class and throws and catches an exception of that class.">
+<link rel="stylesheet" href="assets/style.css?v=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233a50c9'/%3E%3Ctext x='16' y='21' font-family='Arial' font-size='11' font-weight='700' fill='white' text-anchor='middle'%3EPHP%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="index.html">PHP <span>· Practicals</span></a>
+  <nav class="topnav"><a href="index.html">Programs</a><a href="setup.html">Setup</a></nav>
+</div></header>
+<main class="wrap">
+<div class="kicker">Practical 25 of 25</div>
+<h1>Write a PHP code to create and throw a user-defined exception class.</h1>
+<p class="lead">Program 10.5: Creating and Throwing a User-Defined Exception Class</p>
+<div class="meta"><span class="chip">Book: Program 10.5 (Chapter 10)</span><span class="chip">Runs in this page</span></div>
+<div class="aim"><b>Aim</b>To write a PHP program that creates a user-defined exception class and throws and catches an exception of that class.</div>
+<nav class="toc"><a href="#learn">Concepts</a><a href="#code">Code</a><a href="#output">Output</a><a href="#how">How it works</a><a href="#run">Run it</a><a href="#xampp">In XAMPP</a><a href="#mistakes">Common mistakes</a><a href="#viva">Viva</a></nav>
+<h2 id="learn">Concepts used</h2>
+<p>class, extends Exception, throw new, catch with a custom class, getMessage().</p>
+<p><b>Test data:</b> Marks 78, 120 and -5; the allowed range is 0 to 100.</p>
+<h3>Logic</h3><ol class="steps"><li>Define the class MarksException by extending Exception.</li><li>Define checkMarks(<code>$marks</code>), which throws a MarksException if the marks are outside 0 to 100, and otherwise returns a message that the marks are valid.</li><li>Call the function for each value inside a try block, and catch MarksException in the catch block.</li></ol>
+<h2 id="code">Code</h2>
+<div class="code"><div class="code-tabs" role="tablist"><button role="tab" aria-selected="true">custom-exception.php</button><span class="spacer"></span><button class="act dl" title="Download this file">Download</button><button class="act copy" title="Copy this file">Copy</button></div><div class="code-panel active" data-src="code/p25__custom-exception.php" data-name="custom-exception.php"><pre class="lang-php"><span class="ln"><span class="t-dir">&lt;?php</span></span><span class="ln"><span class="t-com">// User-defined exception class for invalid marks</span></span><span class="ln"><span class="t-kw">class</span> MarksException <span class="t-kw">extends</span> Exception</span><span class="ln">{</span><span class="ln">}</span><span class="ln"> </span><span class="ln"><span class="t-com">// Throws MarksException when the marks are outside the allowed range</span></span><span class="ln"><span class="t-kw">function</span> checkMarks(<span class="t-attr">$marks</span>)</span><span class="ln">{</span><span class="ln">    <span class="t-kw">if</span> (<span class="t-attr">$marks</span> &lt; <span class="t-num">0</span> || <span class="t-attr">$marks</span> &gt; <span class="t-num">100</span>) {</span><span class="ln">        <span class="t-kw">throw</span> <span class="t-kw">new</span> MarksException(<span class="t-str">"Marks must be between 0 and 100."</span>);</span><span class="ln">    }</span><span class="ln">    <span class="t-kw">return</span> <span class="t-str">"Marks $marks accepted."</span>;</span><span class="ln">}</span><span class="ln"><span class="t-dir">?&gt;</span></span><span class="ln"><span class="t-dir">&lt;!DOCTYPE html&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">html</span> <span class="t-attr">lang</span>=<span class="t-val">"en"</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">head</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">meta</span> <span class="t-attr">charset</span>=<span class="t-val">"UTF-8"</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">title</span><span class="t-punc">&gt;</span>User-Defined Exception<span class="t-punc">&lt;/</span><span class="t-tag">title</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">head</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">body</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-dir">&lt;?php</span></span><span class="ln">    <span class="t-kw">foreach</span> ([<span class="t-num">78</span>, <span class="t-num">120</span>, -<span class="t-num">5</span>] <span class="t-kw">as</span> <span class="t-attr">$marks</span>) {</span><span class="ln">        <span class="t-kw">try</span> {</span><span class="ln">            <span class="t-kw">echo</span> checkMarks(<span class="t-attr">$marks</span>) . <span class="t-str">"&lt;br&gt;"</span>;</span><span class="ln">        } <span class="t-kw">catch</span> (MarksException <span class="t-attr">$e</span>) {</span><span class="ln">            <span class="t-kw">echo</span> <span class="t-str">"MarksException caught: "</span> . <span class="t-attr">$e</span>-&gt;getMessage()</span><span class="ln">                . <span class="t-str">" (value entered: $marks)&lt;br&gt;"</span>;</span><span class="ln">        }</span><span class="ln">    }</span><span class="ln">    <span class="t-dir">?&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">body</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">html</span><span class="t-punc">&gt;</span></span></pre></div></div>
+<h2 id="output">Output</h2>
+<p class="tryhint" style="margin-top:0">These are real screenshots, taken by running the program with the test data.</p><figure class="shot"><div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">localhost/phpbook/…/custom-exception.php</span></div><img src="img/p25_1.png" alt="Output" loading="lazy"><figcaption>Output</figcaption></figure>
+<h3>Understanding the output</h3><p>The value 78 lies within the range and was accepted. The values 120 and -5 lie outside it, so the function threw the user-defined exception, which was recognised by its own class name in the catch block. Because the class is derived from Exception, the same exceptions would also be caught by a block naming Exception, but naming MarksException makes the purpose of the block clear.</p>
+<h2 id="how">How it works</h2><p>Defining the class: The statement class MarksException extends Exception creates a new exception class with an empty body. The class receives all the methods of Exception, so its objects carry a message and provide getMessage().</p><p>Throwing and catching: The function checkMarks() throws a new MarksException with the message &quot;Marks must be between 0 and 100.&quot; when the value is outside the range. For 78, the function returns its acceptance message, which is displayed. For 120 and -5, the exception is thrown, the function ends, and the catch (MarksException <code>$e</code>) block, which names exactly this class, displays the message together with the value entered.</p>
+<h2 id="run">Run it yourself</h2>
+<div class="php-runner">
+<script type="application/json">{"entries": ["custom-exception.php"], "dirs": [], "folder": "ch10"}</script>
+<div class="pr-tabs"><button type="button" data-file="custom-exception.php" aria-selected="true">custom-exception.php</button></div>
+<textarea data-file="custom-exception.php" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="custom-exception.php (editable)" rows="26">&lt;?php
+// User-defined exception class for invalid marks
+class MarksException extends Exception
+{
+}
+
+// Throws MarksException when the marks are outside the allowed range
+function checkMarks($marks)
+{
+    if ($marks &lt; 0 || $marks &gt; 100) {
+        throw new MarksException(&quot;Marks must be between 0 and 100.&quot;);
+    }
+    return &quot;Marks $marks accepted.&quot;;
+}
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;User-Defined Exception&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;?php
+    foreach ([78, 120, -5] as $marks) {
+        try {
+            echo checkMarks($marks) . &quot;&lt;br&gt;&quot;;
+        } catch (MarksException $e) {
+            echo &quot;MarksException caught: &quot; . $e-&gt;getMessage()
+                . &quot; (value entered: $marks)&lt;br&gt;&quot;;
+        }
+    }
+    ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+<div class="runner-bar"><span class="pr-name">custom-exception.php</span>
+  <button class="btn reset-code" type="button">Reset code</button><button class="btn clear-state" type="button" title="Like opening a new private window">Clear cookies &amp; session</button><button class="btn run" type="button">Run ▶</button></div>
+<div class="status">Press <b>Run</b> to open the page in the browser below. You can edit any file first.</div>
+<div class="pr-browser">
+  <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url pr-url">localhost/phpbook/ch10/custom-exception.php</span>
+  <span class="pr-view"><button type="button" data-view="page" aria-selected="true">Page</button><button type="button" data-view="source" aria-selected="false">HTML sent</button></span></div>
+  <div class="pr-page"><iframe title="Output of the program" sandbox="allow-same-origin allow-forms"></iframe></div>
+  <div class="pr-source" hidden><pre></pre></div>
+  <div class="pr-state" hidden></div>
+</div>
+</div>
+<p class="tryhint">Real PHP 8.3 runs inside your browser (nothing is sent to a server). Forms, links, cookies and sessions work as they do in XAMPP. The first run downloads PHP, so it needs internet and takes a few seconds.</p>
+<p style="margin:14px 0 4px"><b>Try this:</b></p><ul class="tries"><li>Add another value to test, for example 100 or 101.</li><li>Add a new method to MarksException that returns the message in capital letters.</li></ul>
+<h2 id="xampp">Running it in XAMPP</h2><p>Save the file in C:\xampp\htdocs\phpbook\ch10 and open http://<code>localhost/phpbook/ch10/custom-exception.php</code>.</p>
+<h2 id="mistakes">Common mistakes</h2><ul><li>Writing the class without extends Exception, so that its objects cannot be thrown.</li><li>Throwing the custom exception before the class has been defined in the program.</li><li>Misspelling the class name in the catch block, so that the block does not match and the exception remains uncaught.</li></ul>
+<h2 id="viva">Viva questions</h2><details><summary>How is a user-defined exception created?</summary><div>By writing a class that extends Exception, for example <code>class MarksException extends Exception {}</code>.</div></details><details><summary>Why create your own exception class?</summary><div>So that a particular problem can be recognised by its class name and handled separately.</div></details><details><summary>What do the keywords throw and catch do?</summary><div>throw raises an exception object; catch receives an exception of the given class and handles it.</div></details>
+<nav class="pnav"><a href="p24.html"><small>← Practical 24</small>Write a PHP code to handle different types of exceptions using multiple catch blocks.</a><a class="next" href="index.html"><small>Done →</small>All practicals</a></nav>
+</main>
+<div class="wrap"><footer>Appendix to <i>Website Development Using PHP</i> by Dr. Puneet Kumar.</footer></div>
+<script src="assets/app.js?v=1"></script>
+<script src="assets/run.js?v=1"></script>
+</body>
+</html>

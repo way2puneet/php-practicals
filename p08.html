@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practical 8: Create indexed, associative, and multidimensional arrays and display their elements. · PHP</title>
+<meta name="description" content="To write a PHP program that creates and displays indexed, associative and multidimensional arrays.">
+<link rel="stylesheet" href="assets/style.css?v=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233a50c9'/%3E%3Ctext x='16' y='21' font-family='Arial' font-size='11' font-weight='700' fill='white' text-anchor='middle'%3EPHP%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="index.html">PHP <span>· Practicals</span></a>
+  <nav class="topnav"><a href="index.html">Programs</a><a href="setup.html">Setup</a></nav>
+</div></header>
+<main class="wrap">
+<div class="kicker">Practical 8 of 25</div>
+<h1>Create indexed, associative, and multidimensional arrays and display their elements.</h1>
+<p class="lead">Program 5.4: Creating and Displaying Indexed, Associative, and Multidimensional Arrays</p>
+<div class="meta"><span class="chip">Book: Program 5.4 (Chapter 5)</span><span class="chip">Runs in this page</span></div>
+<div class="aim"><b>Aim</b>To write a PHP program that creates and displays indexed, associative and multidimensional arrays.</div>
+<nav class="toc"><a href="#learn">Concepts</a><a href="#code">Code</a><a href="#output">Output</a><a href="#how">How it works</a><a href="#run">Run it</a><a href="#xampp">In XAMPP</a><a href="#mistakes">Common mistakes</a><a href="#viva">Viva</a></nav>
+<h2 id="learn">Concepts used</h2>
+<p>The <code>array()</code> construct and the bracket form, indexed array, associative array, two-dimensional array of associative records, <code>implode()</code>, nested access.</p>
+<p><b>Test data:</b> Indexed array of subjects: PHP, MySQL, HTML. Associative record: name Riya, course BCA, semester 6. Multidimensional array of marks: Riya with PHP 78 and MySQL 85; Aarav with PHP 91 and MySQL 74.</p>
+<h3>Logic</h3><ol class="steps"><li>Create an indexed array with the <code>array()</code> construct and display its values.</li><li>Create an associative array with the bracket form and display its values by key.</li><li>Create a two-dimensional array whose rows are associative arrays, and display one nested value and every row.</li></ol>
+<h2 id="code">Code</h2>
+<div class="code"><div class="code-tabs" role="tablist"><button role="tab" aria-selected="true">three-arrays.php</button><span class="spacer"></span><button class="act dl" title="Download this file">Download</button><button class="act copy" title="Copy this file">Copy</button></div><div class="code-panel active" data-src="code/p08__three-arrays.php" data-name="three-arrays.php"><pre class="lang-php"><span class="ln"><span class="t-dir">&lt;!DOCTYPE html&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">html</span> <span class="t-attr">lang</span>=<span class="t-val">"en"</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">head</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">meta</span> <span class="t-attr">charset</span>=<span class="t-val">"UTF-8"</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">title</span><span class="t-punc">&gt;</span>Three Types of Arrays<span class="t-punc">&lt;/</span><span class="t-tag">title</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">head</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">body</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-dir">&lt;?php</span></span><span class="ln">    <span class="t-com">// 1. Indexed array created with the array() construct</span></span><span class="ln">    <span class="t-attr">$subjects</span> = <span class="t-kw">array</span>(<span class="t-str">"PHP"</span>, <span class="t-str">"MySQL"</span>, <span class="t-str">"HTML"</span>);</span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"&lt;h3&gt;Indexed Array&lt;/h3&gt;"</span>;</span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"Indexed: "</span> . implode(<span class="t-str">", "</span>, <span class="t-attr">$subjects</span>) . <span class="t-str">"&lt;br&gt;"</span>;</span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"Second subject (index 1): "</span> . <span class="t-attr">$subjects</span>[<span class="t-num">1</span>] . <span class="t-str">"&lt;br&gt;"</span>;</span><span class="ln"> </span><span class="ln">    <span class="t-com">// 2. Associative array created with the bracket form</span></span><span class="ln">    <span class="t-attr">$student</span> = [<span class="t-str">"name"</span> =&gt; <span class="t-str">"Riya"</span>, <span class="t-str">"course"</span> =&gt; <span class="t-str">"BCA"</span>, <span class="t-str">"semester"</span> =&gt; <span class="t-num">6</span>];</span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"&lt;h3&gt;Associative Array&lt;/h3&gt;"</span>;</span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"Name: "</span> . <span class="t-attr">$student</span>[<span class="t-str">"name"</span>] . <span class="t-str">"&lt;br&gt;"</span>;</span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"Course: "</span> . <span class="t-attr">$student</span>[<span class="t-str">"course"</span>] . <span class="t-str">"&lt;br&gt;"</span>;</span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"Semester: "</span> . <span class="t-attr">$student</span>[<span class="t-str">"semester"</span>] . <span class="t-str">"&lt;br&gt;"</span>;</span><span class="ln"> </span><span class="ln">    <span class="t-com">// 3. Multidimensional array: each row is an associative array</span></span><span class="ln">    <span class="t-attr">$results</span> = [</span><span class="ln">        [<span class="t-str">"name"</span> =&gt; <span class="t-str">"Riya"</span>, <span class="t-str">"PHP"</span> =&gt; <span class="t-num">78</span>, <span class="t-str">"MySQL"</span> =&gt; <span class="t-num">85</span>],</span><span class="ln">        [<span class="t-str">"name"</span> =&gt; <span class="t-str">"Aarav"</span>, <span class="t-str">"PHP"</span> =&gt; <span class="t-num">91</span>, <span class="t-str">"MySQL"</span> =&gt; <span class="t-num">74</span>],</span><span class="ln">    ];</span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"&lt;h3&gt;Multidimensional Array&lt;/h3&gt;"</span>;</span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"PHP Marks: "</span> . <span class="t-attr">$results</span>[<span class="t-num">0</span>][<span class="t-str">"PHP"</span>] . <span class="t-str">"&lt;br&gt;"</span>;</span><span class="ln">    <span class="t-kw">foreach</span> (<span class="t-attr">$results</span> <span class="t-kw">as</span> <span class="t-attr">$row</span>) {</span><span class="ln">        <span class="t-kw">echo</span> <span class="t-attr">$row</span>[<span class="t-str">"name"</span>] . <span class="t-str">" - PHP: "</span> . <span class="t-attr">$row</span>[<span class="t-str">"PHP"</span>]</span><span class="ln">            . <span class="t-str">", MySQL: "</span> . <span class="t-attr">$row</span>[<span class="t-str">"MySQL"</span>] . <span class="t-str">"&lt;br&gt;"</span>;</span><span class="ln">    }</span><span class="ln">    <span class="t-dir">?&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">body</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">html</span><span class="t-punc">&gt;</span></span></pre></div></div>
+<h2 id="output">Output</h2>
+<p class="tryhint" style="margin-top:0">These are real screenshots, taken by running the program with the test data.</p><figure class="shot"><div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">localhost/phpbook/…/three-arrays.php</span></div><img src="img/p08_1.png" alt="Output" loading="lazy"><figcaption>Output</figcaption></figure>
+<h3>Understanding the output</h3><p>The first section shows that the indexed array keeps its values in order and that index 1 holds the second value. The second section shows values reached through meaningful keys. The third section shows a nested value, Riya&#x27;s PHP marks, followed by both records displayed row by row, which demonstrates that one variable can hold a complete table of data.</p>
+<h2 id="how">How it works</h2><p>The indexed array is created with the traditional <code>array()</code> form, and its values are displayed together with <code>implode()</code> and singly with the index 1. The associative array is created with the bracket form, and each value is reached by its key. The multidimensional array <code>$results</code> has two rows, each of which is an associative array. The expression <code>$results[0]</code>[&quot;PHP&quot;] first selects row 0, Riya&#x27;s record, and then the key &quot;PHP&quot;, giving 78. The foreach loop places each row in <code>$row</code>, and the keys of the inner array are used to display the name and both marks.</p>
+<h2 id="run">Run it yourself</h2>
+<div class="php-runner">
+<script type="application/json">{"entries": ["three-arrays.php"], "dirs": [], "folder": "ch05"}</script>
+<div class="pr-tabs"><button type="button" data-file="three-arrays.php" aria-selected="true">three-arrays.php</button></div>
+<textarea data-file="three-arrays.php" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="three-arrays.php (editable)" rows="26">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Three Types of Arrays&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;?php
+    // 1. Indexed array created with the array() construct
+    $subjects = array(&quot;PHP&quot;, &quot;MySQL&quot;, &quot;HTML&quot;);
+    echo &quot;&lt;h3&gt;Indexed Array&lt;/h3&gt;&quot;;
+    echo &quot;Indexed: &quot; . implode(&quot;, &quot;, $subjects) . &quot;&lt;br&gt;&quot;;
+    echo &quot;Second subject (index 1): &quot; . $subjects[1] . &quot;&lt;br&gt;&quot;;
+
+    // 2. Associative array created with the bracket form
+    $student = [&quot;name&quot; =&gt; &quot;Riya&quot;, &quot;course&quot; =&gt; &quot;BCA&quot;, &quot;semester&quot; =&gt; 6];
+    echo &quot;&lt;h3&gt;Associative Array&lt;/h3&gt;&quot;;
+    echo &quot;Name: &quot; . $student[&quot;name&quot;] . &quot;&lt;br&gt;&quot;;
+    echo &quot;Course: &quot; . $student[&quot;course&quot;] . &quot;&lt;br&gt;&quot;;
+    echo &quot;Semester: &quot; . $student[&quot;semester&quot;] . &quot;&lt;br&gt;&quot;;
+
+    // 3. Multidimensional array: each row is an associative array
+    $results = [
+        [&quot;name&quot; =&gt; &quot;Riya&quot;, &quot;PHP&quot; =&gt; 78, &quot;MySQL&quot; =&gt; 85],
+        [&quot;name&quot; =&gt; &quot;Aarav&quot;, &quot;PHP&quot; =&gt; 91, &quot;MySQL&quot; =&gt; 74],
+    ];
+    echo &quot;&lt;h3&gt;Multidimensional Array&lt;/h3&gt;&quot;;
+    echo &quot;PHP Marks: &quot; . $results[0][&quot;PHP&quot;] . &quot;&lt;br&gt;&quot;;
+    foreach ($results as $row) {
+        echo $row[&quot;name&quot;] . &quot; - PHP: &quot; . $row[&quot;PHP&quot;]
+            . &quot;, MySQL: &quot; . $row[&quot;MySQL&quot;] . &quot;&lt;br&gt;&quot;;
+    }
+    ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+<div class="runner-bar"><span class="pr-name">three-arrays.php</span>
+  <button class="btn reset-code" type="button">Reset code</button><button class="btn clear-state" type="button" title="Like opening a new private window">Clear cookies &amp; session</button><button class="btn run" type="button">Run ▶</button></div>
+<div class="status">Press <b>Run</b> to open the page in the browser below. You can edit any file first.</div>
+<div class="pr-browser">
+  <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url pr-url">localhost/phpbook/ch05/three-arrays.php</span>
+  <span class="pr-view"><button type="button" data-view="page" aria-selected="true">Page</button><button type="button" data-view="source" aria-selected="false">HTML sent</button></span></div>
+  <div class="pr-page"><iframe title="Output of the program" sandbox="allow-same-origin allow-forms"></iframe></div>
+  <div class="pr-source" hidden><pre></pre></div>
+  <div class="pr-state" hidden></div>
+</div>
+</div>
+<p class="tryhint">Real PHP 8.3 runs inside your browser (nothing is sent to a server). Forms, links, cookies and sessions work as they do in XAMPP. The first run downloads PHP, so it needs internet and takes a few seconds.</p>
+<p style="margin:14px 0 4px"><b>Try this:</b></p><ul class="tries"><li>Add a fourth subject to the indexed array.</li><li>Add a third student to the multidimensional array.</li></ul>
+<h2 id="xampp">Running it in XAMPP</h2><p>Save the file in C:\xampp\htdocs\phpbook\ch05 and open http://<code>localhost/phpbook/ch05/three-arrays.php</code>.</p>
+<h2 id="mistakes">Common mistakes</h2><ul><li>Writing <code>$results[&quot;PHP&quot;]</code> without the row index; the outer array has integer keys 0 and 1, not the key &quot;PHP&quot;.</li><li>Mixing up =&gt; and -&gt;; the arrow -&gt; has a different meaning in PHP.</li><li>Using echo <code>$subjects</code>; to display an array, which prints only the word Array together with a warning.</li><li>The three kinds of array are compared in Table 5.2.</li><li>Table 5.2: Comparison of the Three Array Types</li><li>Arrays become useful when their elements are processed one after another. The methods of visiting every element of an array are explained in the next section.</li></ul>
+<h2 id="viva">Viva questions</h2><details><summary>What are the three types of arrays in PHP?</summary><div>Indexed (numeric keys), associative (named keys) and multidimensional (arrays inside arrays).</div></details><details><summary>From which index does an indexed array start?</summary><div>From 0.</div></details><details><summary>How do you read Riya’s PHP marks from a two-dimensional array?</summary><div>With two keys, for example <code>$marks["Riya"]["PHP"]</code> or <code>$students[0]["PHP"]</code>.</div></details>
+<nav class="pnav"><a href="p07.html"><small>← Practical 7</small>Write a PHP code to print multiplication table using loops.</a><a class="next" href="p09.html"><small>Practical 9 →</small>Write a PHP code to demonstrate various loop iterative functions.</a></nav>
+</main>
+<div class="wrap"><footer>Appendix to <i>Website Development Using PHP</i> by Dr. Puneet Kumar.</footer></div>
+<script src="assets/app.js?v=1"></script>
+<script src="assets/run.js?v=1"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practical 1: Write a PHP code to print your name, course, and current date &amp; time. · PHP</title>
+<meta name="description" content="To write a PHP program that prints the name of a student, the course and the current date and time.">
+<link rel="stylesheet" href="assets/style.css?v=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233a50c9'/%3E%3Ctext x='16' y='21' font-family='Arial' font-size='11' font-weight='700' fill='white' text-anchor='middle'%3EPHP%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="index.html">PHP <span>· Practicals</span></a>
+  <nav class="topnav"><a href="index.html">Programs</a><a href="setup.html">Setup</a></nav>
+</div></header>
+<main class="wrap">
+<div class="kicker">Practical 1 of 25</div>
+<h1>Write a PHP code to print your name, course, and current date &amp; time.</h1>
+<p class="lead">Program 2.1: Printing Name, Course and Current Date and Time</p>
+<div class="meta"><span class="chip">Book: Program 2.1 (Chapter 2)</span><span class="chip">Runs in this page</span></div>
+<div class="aim"><b>Aim</b>To write a PHP program that prints the name of a student, the course and the current date and time.</div>
+<nav class="toc"><a href="#learn">Concepts</a><a href="#code">Code</a><a href="#output">Output</a><a href="#how">How it works</a><a href="#run">Run it</a><a href="#xampp">In XAMPP</a><a href="#mistakes">Common mistakes</a><a href="#viva">Viva</a></nav>
+<h2 id="learn">Concepts used</h2>
+<p>PHP tags, echo, string values, the concatenation operator (.), the built-in functions <code>date_default_timezone_set()</code> and <code>date()</code>.</p>
+<p><b>Test data:</b> Name: Aarav Mehta; Course: BCA. The date and time are taken from the server clock when the page is opened.</p>
+<h3>Logic</h3><ol class="steps"><li>Set the time zone to Indian Standard Time.</li><li>Print a heading.</li><li>Print the name and the course.</li><li>Obtain the current date and time with <code>date()</code> and print them after a label.</li></ol>
+<h2 id="code">Code</h2>
+<div class="code"><div class="code-tabs" role="tablist"><button role="tab" aria-selected="true">details.php</button><span class="spacer"></span><button class="act dl" title="Download this file">Download</button><button class="act copy" title="Copy this file">Copy</button></div><div class="code-panel active" data-src="code/p01__details.php" data-name="details.php"><pre class="lang-php"><span class="ln"><span class="t-dir">&lt;?php</span></span><span class="ln"><span class="t-com">// Set the time zone so that date() returns Indian Standard Time</span></span><span class="ln">date_default_timezone_set(<span class="t-str">"Asia/Kolkata"</span>);</span><span class="ln"><span class="t-dir">?&gt;</span></span><span class="ln"><span class="t-dir">&lt;!DOCTYPE html&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">html</span> <span class="t-attr">lang</span>=<span class="t-val">"en"</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">head</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">meta</span> <span class="t-attr">charset</span>=<span class="t-val">"UTF-8"</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">title</span><span class="t-punc">&gt;</span>Student Details<span class="t-punc">&lt;/</span><span class="t-tag">title</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">head</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">body</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-dir">&lt;?php</span></span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"&lt;h2&gt;Student Details&lt;/h2&gt;"</span>;</span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"Name: Aarav Mehta&lt;br&gt;"</span>;</span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"Course: BCA&lt;br&gt;"</span>;</span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"Date and Time: "</span> . date(<span class="t-str">"d-m-Y H:i:s"</span>);</span><span class="ln">    <span class="t-dir">?&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">body</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">html</span><span class="t-punc">&gt;</span></span></pre></div></div>
+<h2 id="output">Output</h2>
+<p class="tryhint" style="margin-top:0">These are real screenshots, taken by running the program with the test data.</p><figure class="shot"><div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">localhost/phpbook/…/details.php</span></div><img src="img/p01_1.png" alt="Output" loading="lazy"><figcaption>Output</figcaption></figure>
+<h3>Understanding the output</h3><p>The name and course are printed exactly as written in the strings. The last line is a sample: the date and time are produced by <code>date()</code> when the page is opened, so a different value appears each time the page is reloaded. Reloading the page a few seconds later changes the seconds, which shows that the page is generated afresh for every request.</p>
+<h2 id="how">How it works</h2><p>The first PHP block contains a comment, explained in Section 2.5, and a call to <code>date_default_timezone_set()</code>. This block produces no output; it only prepares the time zone for the rest of the script. The HTML document then begins.</p><p>The second PHP block contains four echo statements. The first writes the heading, and the next two write the name and the course; the <code>&lt;br&gt;</code> tag at the end of each string moves the next item to a new line in the browser. In the last statement, date(&quot;d-m-Y H:i:s&quot;) returns the current date and time in the form day-month-year hours:minutes:seconds, and the dot operator . joins this value to the label &quot;Date and Time: &quot;. The dot operator is explained further in Section 2.5.5.</p>
+<h2 id="run">Run it yourself</h2>
+<div class="php-runner">
+<script type="application/json">{"entries": ["details.php"], "dirs": [], "folder": "ch02"}</script>
+<div class="pr-tabs"><button type="button" data-file="details.php" aria-selected="true">details.php</button></div>
+<textarea data-file="details.php" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="details.php (editable)" rows="21">&lt;?php
+// Set the time zone so that date() returns Indian Standard Time
+date_default_timezone_set(&quot;Asia/Kolkata&quot;);
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Student Details&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;?php
+    echo &quot;&lt;h2&gt;Student Details&lt;/h2&gt;&quot;;
+    echo &quot;Name: Aarav Mehta&lt;br&gt;&quot;;
+    echo &quot;Course: BCA&lt;br&gt;&quot;;
+    echo &quot;Date and Time: &quot; . date(&quot;d-m-Y H:i:s&quot;);
+    ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+<div class="runner-bar"><span class="pr-name">details.php</span>
+  <button class="btn reset-code" type="button">Reset code</button><button class="btn clear-state" type="button" title="Like opening a new private window">Clear cookies &amp; session</button><button class="btn run" type="button">Run ▶</button></div>
+<div class="status">Press <b>Run</b> to open the page in the browser below. You can edit any file first.</div>
+<div class="pr-browser">
+  <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url pr-url">localhost/phpbook/ch02/details.php</span>
+  <span class="pr-view"><button type="button" data-view="page" aria-selected="true">Page</button><button type="button" data-view="source" aria-selected="false">HTML sent</button></span></div>
+  <div class="pr-page"><iframe title="Output of the program" sandbox="allow-same-origin allow-forms"></iframe></div>
+  <div class="pr-source" hidden><pre></pre></div>
+  <div class="pr-state" hidden></div>
+</div>
+</div>
+<p class="tryhint">Real PHP 8.3 runs inside your browser (nothing is sent to a server). Forms, links, cookies and sessions work as they do in XAMPP. The first run downloads PHP, so it needs internet and takes a few seconds.</p>
+<p style="margin:14px 0 4px"><b>Try this:</b></p><ul class="tries"><li>Change the name and course to your own.</li><li>Change the format to <code>date("l, d F Y, h:i A")</code> to show the day name and a 12-hour time.</li></ul>
+<h2 id="xampp">Running it in XAMPP</h2><p>Save the file as C:\xampp\htdocs\phpbook\ch02\<code>details.php</code>, start Apache, and open http://<code>localhost/phpbook/ch02/details.php</code>.</p>
+<h2 id="mistakes">Common mistakes</h2><ul><li>Writing the format characters in the wrong case, for example M instead of m, which prints the month as a short name such as Oct instead of 10.</li><li>Omitting the time-zone setting, which may print a time several hours different from Indian time.</li><li>Forgetting the dot operator between the label and <code>date()</code>, which produces a parse error.</li><li>Writing <code>&lt;br&gt;</code> outside the quotation marks, where PHP treats it as invalid code.</li></ul>
+<h2 id="viva">Viva questions</h2><details><summary>What does <code>echo</code> do?</summary><div>It sends text (or HTML) from PHP to the browser.</div></details><details><summary>What does <code>date("d-m-Y H:i:s")</code> return?</summary><div>The current date and time, such as 24-11-2026 12:40:55: day, month, four-digit year, then hours (24-hour), minutes and seconds.</div></details><details><summary>Why is <code>date_default_timezone_set()</code> used?</summary><div>So that date() uses Indian Standard Time instead of the server’s default time zone.</div></details>
+<nav class="pnav"><a href="setup.html"><small>← Before you start</small>Setup</a><a class="next" href="p02.html"><small>Practical 2 →</small>Write a PHP code demonstrating variables and constants.</a></nav>
+</main>
+<div class="wrap"><footer>Appendix to <i>Website Development Using PHP</i> by Dr. Puneet Kumar.</footer></div>
+<script src="assets/app.js?v=1"></script>
+<script src="assets/run.js?v=1"></script>
+</body>
+</html>

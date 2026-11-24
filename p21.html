@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practical 21: Write a PHP code that sets a cookie based on user input. · PHP</title>
+<meta name="description" content="To accept a user preference through a form and save it in a cookie, and to read the saved preference on later visits.">
+<link rel="stylesheet" href="assets/style.css?v=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233a50c9'/%3E%3Ctext x='16' y='21' font-family='Arial' font-size='11' font-weight='700' fill='white' text-anchor='middle'%3EPHP%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="index.html">PHP <span>· Practicals</span></a>
+  <nav class="topnav"><a href="index.html">Programs</a><a href="setup.html">Setup</a></nav>
+</div></header>
+<main class="wrap">
+<div class="kicker">Practical 21 of 25</div>
+<h1>Write a PHP code that sets a cookie based on user input.</h1>
+<p class="lead">Program 9.5: Setting a Cookie Using User Input</p>
+<div class="meta"><span class="chip">Book: Program 9.5 (Chapter 9)</span><span class="chip">Runs in this page</span></div>
+<div class="aim"><b>Aim</b>To accept a user preference through a form and save it in a cookie, and to read the saved preference on later visits.</div>
+<nav class="toc"><a href="#learn">Concepts</a><a href="#code">Code</a><a href="#output">Output</a><a href="#how">How it works</a><a href="#run">Run it</a><a href="#xampp">In XAMPP</a><a href="#mistakes">Common mistakes</a><a href="#viva">Viva</a></nav>
+<h2 id="learn">Concepts used</h2>
+<p>POST form, validation of the submitted value with <code>in_array()</code>, <code>setcookie()</code> with a 30-day expiration, <code>$_COOKIE</code>, sticky selection.</p>
+<p><b>Test data:</b> Theme preference chosen from Light and Dark. The value Dark is submitted; the page is then opened again later.</p>
+<h3>Logic</h3><ol class="steps"><li>Read the cookie theme if it exists and is one of the allowed values.</li><li>When the form is submitted, read the chosen theme and check that it is allowed.</li><li>If it is allowed, set the cookie for 30 days and display a confirmation; the submitted value is used for the message, because the cookie is available only from the next request.</li><li>Display the form, with the saved or submitted theme selected.</li></ol>
+<h2 id="code">Code</h2>
+<div class="code"><div class="code-tabs" role="tablist"><button role="tab" aria-selected="true">preference.php</button><span class="spacer"></span><button class="act dl" title="Download this file">Download</button><button class="act copy" title="Copy this file">Copy</button></div><div class="code-panel active" data-src="code/p21__preference.php" data-name="preference.php"><pre class="lang-php"><span class="ln"><span class="t-dir">&lt;?php</span></span><span class="ln"><span class="t-attr">$allowed</span> = [<span class="t-str">"Light"</span>, <span class="t-str">"Dark"</span>];</span><span class="ln"><span class="t-attr">$message</span> = <span class="t-str">""</span>;</span><span class="ln"> </span><span class="ln"><span class="t-com">// Preference saved on an earlier visit, if any</span></span><span class="ln"><span class="t-attr">$saved</span> = <span class="t-attr">$_COOKIE</span>[<span class="t-str">"theme"</span>] ?? <span class="t-str">""</span>;</span><span class="ln"><span class="t-kw">if</span> (!in_array(<span class="t-attr">$saved</span>, <span class="t-attr">$allowed</span>)) {</span><span class="ln">    <span class="t-attr">$saved</span> = <span class="t-str">""</span>;                         <span class="t-com">// ignore a missing or changed value</span></span><span class="ln">}</span><span class="ln"> </span><span class="ln"><span class="t-kw">if</span> (<span class="t-attr">$_SERVER</span>[<span class="t-str">"REQUEST_METHOD"</span>] == <span class="t-str">"POST"</span>) {</span><span class="ln">    <span class="t-attr">$theme</span> = <span class="t-attr">$_POST</span>[<span class="t-str">"theme"</span>] ?? <span class="t-str">""</span>;</span><span class="ln">    <span class="t-kw">if</span> (in_array(<span class="t-attr">$theme</span>, <span class="t-attr">$allowed</span>)) {</span><span class="ln">        setcookie(<span class="t-str">"theme"</span>, <span class="t-attr">$theme</span>, time() + <span class="t-num">30</span> * <span class="t-num">24</span> * <span class="t-num">60</span> * <span class="t-num">60</span>, <span class="t-str">"/"</span>);</span><span class="ln">        <span class="t-attr">$saved</span> = <span class="t-attr">$theme</span>;                 <span class="t-com">// use the new value on this request</span></span><span class="ln">        <span class="t-attr">$message</span> = <span class="t-str">"Preference saved: $theme"</span>;</span><span class="ln">    } <span class="t-kw">else</span> {</span><span class="ln">        <span class="t-attr">$message</span> = <span class="t-str">"Please choose a valid theme."</span>;</span><span class="ln">    }</span><span class="ln">}</span><span class="ln"><span class="t-dir">?&gt;</span></span><span class="ln"><span class="t-dir">&lt;!DOCTYPE html&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">html</span> <span class="t-attr">lang</span>=<span class="t-val">"en"</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">head</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">meta</span> <span class="t-attr">charset</span>=<span class="t-val">"UTF-8"</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">title</span><span class="t-punc">&gt;</span>Theme Preference<span class="t-punc">&lt;/</span><span class="t-tag">title</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">head</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">body</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">h2</span><span class="t-punc">&gt;</span>Theme Preference<span class="t-punc">&lt;/</span><span class="t-tag">h2</span><span class="t-punc">&gt;</span></span><span class="ln"> </span><span class="ln">    <span class="t-dir">&lt;?php</span> <span class="t-kw">if</span> (<span class="t-attr">$message</span> != <span class="t-str">""</span>): <span class="t-dir">?&gt;</span></span><span class="ln">        <span class="t-punc">&lt;</span><span class="t-tag">p</span><span class="t-punc">&gt;</span><span class="t-punc">&lt;</span><span class="t-tag">strong</span><span class="t-punc">&gt;</span><span class="t-dir">&lt;?php</span> <span class="t-kw">echo</span> htmlspecialchars(<span class="t-attr">$message</span>); <span class="t-dir">?&gt;</span><span class="t-punc">&lt;/</span><span class="t-tag">strong</span><span class="t-punc">&gt;</span><span class="t-punc">&lt;/</span><span class="t-tag">p</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-dir">&lt;?php</span> <span class="t-kw">elseif</span> (<span class="t-attr">$saved</span> != <span class="t-str">""</span>): <span class="t-dir">?&gt;</span></span><span class="ln">        <span class="t-punc">&lt;</span><span class="t-tag">p</span><span class="t-punc">&gt;</span>Your saved theme preference: <span class="t-dir">&lt;?php</span> <span class="t-kw">echo</span> <span class="t-attr">$saved</span>; <span class="t-dir">?&gt;</span><span class="t-punc">&lt;/</span><span class="t-tag">p</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-dir">&lt;?php</span> <span class="t-kw">else</span>: <span class="t-dir">?&gt;</span></span><span class="ln">        <span class="t-punc">&lt;</span><span class="t-tag">p</span><span class="t-punc">&gt;</span>No preference has been saved yet.<span class="t-punc">&lt;/</span><span class="t-tag">p</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-dir">&lt;?php</span> <span class="t-kw">endif</span>; <span class="t-dir">?&gt;</span></span><span class="ln"> </span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">form</span> <span class="t-attr">method</span>=<span class="t-val">"post"</span><span class="t-punc">&gt;</span></span><span class="ln">        <span class="t-punc">&lt;</span><span class="t-tag">label</span> <span class="t-attr">for</span>=<span class="t-val">"theme"</span><span class="t-punc">&gt;</span>Choose a theme:<span class="t-punc">&lt;/</span><span class="t-tag">label</span><span class="t-punc">&gt;</span></span><span class="ln">        <span class="t-punc">&lt;</span><span class="t-tag">select</span> <span class="t-attr">id</span>=<span class="t-val">"theme"</span> <span class="t-attr">name</span>=<span class="t-val">"theme"</span><span class="t-punc">&gt;</span></span><span class="ln">            <span class="t-dir">&lt;?php</span> <span class="t-kw">foreach</span> (<span class="t-attr">$allowed</span> <span class="t-kw">as</span> <span class="t-attr">$t</span>): <span class="t-dir">?&gt;</span></span><span class="ln">                &lt;option value="<span class="t-dir">&lt;?php</span> <span class="t-kw">echo</span> <span class="t-attr">$t</span>; <span class="t-dir">?&gt;</span>"</span><span class="ln">                    <span class="t-dir">&lt;?php</span> <span class="t-kw">if</span> (<span class="t-attr">$t</span> == <span class="t-attr">$saved</span>) <span class="t-kw">echo</span> <span class="t-str">"selected"</span>; <span class="t-dir">?&gt;</span>&gt;<span class="t-dir">&lt;?php</span> <span class="t-kw">echo</span> <span class="t-attr">$t</span>; <span class="t-dir">?&gt;</span><span class="t-punc">&lt;/</span><span class="t-tag">option</span><span class="t-punc">&gt;</span></span><span class="ln">            <span class="t-dir">&lt;?php</span> <span class="t-kw">endforeach</span>; <span class="t-dir">?&gt;</span></span><span class="ln">        <span class="t-punc">&lt;/</span><span class="t-tag">select</span><span class="t-punc">&gt;</span></span><span class="ln">        <span class="t-punc">&lt;</span><span class="t-tag">input</span> <span class="t-attr">type</span>=<span class="t-val">"submit"</span> <span class="t-attr">value</span>=<span class="t-val">"Save Preference"</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;/</span><span class="t-tag">form</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">body</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">html</span><span class="t-punc">&gt;</span></span></pre></div></div>
+<h2 id="output">Output</h2>
+<p class="tryhint" style="margin-top:0">These are real screenshots, taken by running the program with the test data.</p><figure class="shot"><div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">localhost/phpbook/…/preference.php</span></div><img src="img/p21_1.png" alt="Output on the first visit" loading="lazy"><figcaption>Output on the first visit</figcaption></figure><figure class="shot"><div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">localhost/phpbook/…/preference.php</span></div><img src="img/p21_2.png" alt="Output after saving Dark" loading="lazy"><figcaption>Output after saving Dark</figcaption></figure><figure class="shot"><div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">localhost/phpbook/…/preference.php</span></div><img src="img/p21_3.png" alt="Output on a later visit" loading="lazy"><figcaption>Output on a later visit</figcaption></figure>
+<h3>Understanding the output</h3><p>The second output confirms that the value chosen by the user was accepted and saved. The third output, displayed on a later request without any submission, shows that the value came back from the browser in the cookie; because the cookie has a 30-day expiration, it survives the closing of the browser. If the user edits the cookie in the browser to an invalid value such as Blue, the page ignores it and shows that no preference has been saved.</p>
+<h2 id="how">How it works</h2><p>Reading the old preference: At the top, the page reads the theme cookie with ??. Since a cookie can be changed by the user, the value is accepted only if it is one of the allowed themes; any other value is ignored.</p><p>Saving the new preference: When the form is submitted, the chosen value is read from <code>$_POST</code> and checked with <code>in_array()</code>. A valid value is stored in a cookie that lasts 30 days, and the confirmation &quot;Preference saved: Dark&quot; is prepared. Since the new cookie will appear in <code>$_COOKIE</code> only on the next request, the program also copies the value into <code>$saved</code>, so that the drop-down list shows Dark as selected at once. All of this happens before any output, so the cookie header can be sent.</p><p>Later visits: When the page is opened again, even after closing and reopening the browser, the browser sends the cookie, and the page displays the saved preference without any form submission.</p>
+<h2 id="run">Run it yourself</h2>
+<div class="php-runner">
+<script type="application/json">{"entries": ["preference.php"], "dirs": [], "folder": "ch09"}</script>
+<div class="pr-tabs"><button type="button" data-file="preference.php" aria-selected="true">preference.php</button></div>
+<textarea data-file="preference.php" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="preference.php (editable)" rows="26">&lt;?php
+$allowed = [&quot;Light&quot;, &quot;Dark&quot;];
+$message = &quot;&quot;;
+
+// Preference saved on an earlier visit, if any
+$saved = $_COOKIE[&quot;theme&quot;] ?? &quot;&quot;;
+if (!in_array($saved, $allowed)) {
+    $saved = &quot;&quot;;                         // ignore a missing or changed value
+}
+
+if ($_SERVER[&quot;REQUEST_METHOD&quot;] == &quot;POST&quot;) {
+    $theme = $_POST[&quot;theme&quot;] ?? &quot;&quot;;
+    if (in_array($theme, $allowed)) {
+        setcookie(&quot;theme&quot;, $theme, time() + 30 * 24 * 60 * 60, &quot;/&quot;);
+        $saved = $theme;                 // use the new value on this request
+        $message = &quot;Preference saved: $theme&quot;;
+    } else {
+        $message = &quot;Please choose a valid theme.&quot;;
+    }
+}
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Theme Preference&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;Theme Preference&lt;/h2&gt;
+
+    &lt;?php if ($message != &quot;&quot;): ?&gt;
+        &lt;p&gt;&lt;strong&gt;&lt;?php echo htmlspecialchars($message); ?&gt;&lt;/strong&gt;&lt;/p&gt;
+    &lt;?php elseif ($saved != &quot;&quot;): ?&gt;
+        &lt;p&gt;Your saved theme preference: &lt;?php echo $saved; ?&gt;&lt;/p&gt;
+    &lt;?php else: ?&gt;
+        &lt;p&gt;No preference has been saved yet.&lt;/p&gt;
+    &lt;?php endif; ?&gt;
+
+    &lt;form method=&quot;post&quot;&gt;
+        &lt;label for=&quot;theme&quot;&gt;Choose a theme:&lt;/label&gt;
+        &lt;select id=&quot;theme&quot; name=&quot;theme&quot;&gt;
+            &lt;?php foreach ($allowed as $t): ?&gt;
+                &lt;option value=&quot;&lt;?php echo $t; ?&gt;&quot;
+                    &lt;?php if ($t == $saved) echo &quot;selected&quot;; ?&gt;&gt;&lt;?php echo $t; ?&gt;&lt;/option&gt;
+            &lt;?php endforeach; ?&gt;
+        &lt;/select&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;Save Preference&quot;&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+<div class="runner-bar"><span class="pr-name">preference.php</span>
+  <button class="btn reset-code" type="button">Reset code</button><button class="btn clear-state" type="button" title="Like opening a new private window">Clear cookies &amp; session</button><button class="btn run" type="button">Run ▶</button></div>
+<div class="status">Press <b>Run</b> to open the page in the browser below. You can edit any file first.</div>
+<div class="pr-browser">
+  <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url pr-url">localhost/phpbook/ch09/preference.php</span>
+  <span class="pr-view"><button type="button" data-view="page" aria-selected="true">Page</button><button type="button" data-view="source" aria-selected="false">HTML sent</button></span></div>
+  <div class="pr-page"><iframe title="Output of the program" sandbox="allow-same-origin allow-forms"></iframe></div>
+  <div class="pr-source" hidden><pre></pre></div>
+  <div class="pr-state" hidden></div>
+</div>
+</div>
+<p class="tryhint">Real PHP 8.3 runs inside your browser (nothing is sent to a server). Forms, links, cookies and sessions work as they do in XAMPP. The first run downloads PHP, so it needs internet and takes a few seconds.</p>
+<p style="margin:14px 0 4px"><b>Try this:</b></p><ul class="tries"><li>Save Dark, then click Run again to open the page later.</li><li>Click "Clear cookies & session" and run again to see the first-visit message.</li></ul>
+<h2 id="xampp">Running it in XAMPP</h2><p>Save the file in C:\xampp\htdocs\phpbook\ch09 and open http://<code>localhost/phpbook/ch09/preference.php</code>. Choose Dark and click Save Preference. Then close the browser, reopen it and open the same address.</p>
+<h2 id="mistakes">Common mistakes</h2><ul><li>Saving the submitted value in the cookie without checking it against the allowed values.</li><li>Reading <code>$_COOKIE[&quot;theme&quot;]</code> immediately after <code>setcookie()</code> to display the confirmation, which shows the old value or nothing.</li><li>Placing the form or any HTML before the <code>setcookie()</code> call.</li></ul>
+<h2 id="viva">Viva questions</h2><details><summary>How is the value of a cookie set from user input?</summary><div>The submitted value is read from $_POST and passed to setcookie().</div></details><details><summary>Why is the value checked against a list of allowed values?</summary><div>So that a user cannot store unexpected data in the cookie.</div></details><details><summary>How is a cookie deleted?</summary><div>By setting it again with an expiry time in the past, for example <code>setcookie("theme", "", time() - 3600)</code>.</div></details>
+<nav class="pnav"><a href="p20.html"><small>← Practical 20</small>Write a PHP code to create a cookie with a name, value and expiration time.</a><a class="next" href="p22.html"><small>Practical 22 →</small>Write a PHP code to retrieve and display a session variable.</a></nav>
+</main>
+<div class="wrap"><footer>Appendix to <i>Website Development Using PHP</i> by Dr. Puneet Kumar.</footer></div>
+<script src="assets/app.js?v=1"></script>
+<script src="assets/run.js?v=1"></script>
+</body>
+</html>

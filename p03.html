@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practical 3: Write a PHP code to perform arithmetic operations (addition, subtraction, multiplication, division). · PHP</title>
+<meta name="description" content="To write a PHP program that performs addition, subtraction, multiplication and division of two numbers.">
+<link rel="stylesheet" href="assets/style.css?v=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233a50c9'/%3E%3Ctext x='16' y='21' font-family='Arial' font-size='11' font-weight='700' fill='white' text-anchor='middle'%3EPHP%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="index.html">PHP <span>· Practicals</span></a>
+  <nav class="topnav"><a href="index.html">Programs</a><a href="setup.html">Setup</a></nav>
+</div></header>
+<main class="wrap">
+<div class="kicker">Practical 3 of 25</div>
+<h1>Write a PHP code to perform arithmetic operations (addition, subtraction, multiplication, division).</h1>
+<p class="lead">Program 2.5: Performing Addition, Subtraction, Multiplication, and Division</p>
+<div class="meta"><span class="chip">Book: Program 2.5 (Chapter 2)</span><span class="chip">Runs in this page</span></div>
+<div class="aim"><b>Aim</b>To write a PHP program that performs addition, subtraction, multiplication and division of two numbers.</div>
+<nav class="toc"><a href="#learn">Concepts</a><a href="#code">Code</a><a href="#output">Output</a><a href="#how">How it works</a><a href="#run">Run it</a><a href="#xampp">In XAMPP</a><a href="#mistakes">Common mistakes</a><a href="#viva">Viva</a></nav>
+<h2 id="learn">Concepts used</h2>
+<p>Variables, the arithmetic operators +, -, * and /, expressions in parentheses, the dot operator.</p>
+<p><b>Test data:</b> First number: 20; second number: 10.</p>
+<h3>Logic</h3><ol class="steps"><li>Store the two numbers in variables.</li><li>Calculate the four results and store each in a separate variable.</li><li>Display each result after a suitable label.</li></ol>
+<h2 id="code">Code</h2>
+<div class="code"><div class="code-tabs" role="tablist"><button role="tab" aria-selected="true">arithmetic.php</button><span class="spacer"></span><button class="act dl" title="Download this file">Download</button><button class="act copy" title="Copy this file">Copy</button></div><div class="code-panel active" data-src="code/p03__arithmetic.php" data-name="arithmetic.php"><pre class="lang-php"><span class="ln"><span class="t-dir">&lt;?php</span></span><span class="ln"><span class="t-attr">$first</span> = <span class="t-num">20</span>;</span><span class="ln"><span class="t-attr">$second</span> = <span class="t-num">10</span>;          <span class="t-com">// must not be zero, because it is used as a divisor</span></span><span class="ln"> </span><span class="ln"><span class="t-attr">$sum</span> = <span class="t-attr">$first</span> + <span class="t-attr">$second</span>;</span><span class="ln"><span class="t-attr">$difference</span> = <span class="t-attr">$first</span> - <span class="t-attr">$second</span>;</span><span class="ln"><span class="t-attr">$product</span> = <span class="t-attr">$first</span> * <span class="t-attr">$second</span>;</span><span class="ln"><span class="t-attr">$quotient</span> = <span class="t-attr">$first</span> / <span class="t-attr">$second</span>;</span><span class="ln"><span class="t-dir">?&gt;</span></span><span class="ln"><span class="t-dir">&lt;!DOCTYPE html&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">html</span> <span class="t-attr">lang</span>=<span class="t-val">"en"</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">head</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">meta</span> <span class="t-attr">charset</span>=<span class="t-val">"UTF-8"</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">title</span><span class="t-punc">&gt;</span>Arithmetic Operations<span class="t-punc">&lt;/</span><span class="t-tag">title</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">head</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">body</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-dir">&lt;?php</span></span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"&lt;h3&gt;Arithmetic Operations on $first and $second&lt;/h3&gt;"</span>;</span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"Addition: "</span> . <span class="t-attr">$sum</span> . <span class="t-str">"&lt;br&gt;"</span>;</span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"Subtraction: "</span> . <span class="t-attr">$difference</span> . <span class="t-str">"&lt;br&gt;"</span>;</span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"Multiplication: "</span> . <span class="t-attr">$product</span> . <span class="t-str">"&lt;br&gt;"</span>;</span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"Division: "</span> . <span class="t-attr">$quotient</span> . <span class="t-str">"&lt;br&gt;"</span>;</span><span class="ln">    <span class="t-dir">?&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">body</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">html</span><span class="t-punc">&gt;</span></span></pre></div></div>
+<h2 id="output">Output</h2>
+<p class="tryhint" style="margin-top:0">These are real screenshots, taken by running the program with the test data.</p><figure class="shot"><div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">localhost/phpbook/…/arithmetic.php</span></div><img src="img/p03_1.png" alt="Output" loading="lazy"><figcaption>Output</figcaption></figure>
+<h3>Understanding the output</h3><p>The four lines show the results of the four operators. The division result is printed as 2, not 2.0, because 20 is exactly divisible by 10 and PHP gives an integer in that case. If the second number is changed to 3, the division line becomes Division: 6.6666666666667, a float, while the other lines show 23, 17 and 60.</p>
+<h2 id="how">How it works</h2><p>The two numbers are stored in <code>$first</code> and <code>$second</code>. Each of the next four statements evaluates one arithmetic expression and stores its result: 20 + 10 = 30, 20 − 10 = 10, 20 × 10 = 200 and 20 ÷ 10 = 2. Calculating the results first and printing them later keeps the output statements short. In the HTML part, the heading uses interpolation to show the two numbers, and each later line joins a label with a result through the dot operator.</p>
+<h2 id="run">Run it yourself</h2>
+<div class="php-runner">
+<script type="application/json">{"entries": ["arithmetic.php"], "dirs": [], "folder": "ch02"}</script>
+<div class="pr-tabs"><button type="button" data-file="arithmetic.php" aria-selected="true">arithmetic.php</button></div>
+<textarea data-file="arithmetic.php" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="arithmetic.php (editable)" rows="26">&lt;?php
+$first = 20;
+$second = 10;          // must not be zero, because it is used as a divisor
+
+$sum = $first + $second;
+$difference = $first - $second;
+$product = $first * $second;
+$quotient = $first / $second;
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Arithmetic Operations&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;?php
+    echo &quot;&lt;h3&gt;Arithmetic Operations on $first and $second&lt;/h3&gt;&quot;;
+    echo &quot;Addition: &quot; . $sum . &quot;&lt;br&gt;&quot;;
+    echo &quot;Subtraction: &quot; . $difference . &quot;&lt;br&gt;&quot;;
+    echo &quot;Multiplication: &quot; . $product . &quot;&lt;br&gt;&quot;;
+    echo &quot;Division: &quot; . $quotient . &quot;&lt;br&gt;&quot;;
+    ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+<div class="runner-bar"><span class="pr-name">arithmetic.php</span>
+  <button class="btn reset-code" type="button">Reset code</button><button class="btn clear-state" type="button" title="Like opening a new private window">Clear cookies &amp; session</button><button class="btn run" type="button">Run ▶</button></div>
+<div class="status">Press <b>Run</b> to open the page in the browser below. You can edit any file first.</div>
+<div class="pr-browser">
+  <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url pr-url">localhost/phpbook/ch02/arithmetic.php</span>
+  <span class="pr-view"><button type="button" data-view="page" aria-selected="true">Page</button><button type="button" data-view="source" aria-selected="false">HTML sent</button></span></div>
+  <div class="pr-page"><iframe title="Output of the program" sandbox="allow-same-origin allow-forms"></iframe></div>
+  <div class="pr-source" hidden><pre></pre></div>
+  <div class="pr-state" hidden></div>
+</div>
+</div>
+<p class="tryhint">Real PHP 8.3 runs inside your browser (nothing is sent to a server). Forms, links, cookies and sessions work as they do in XAMPP. The first run downloads PHP, so it needs internet and takes a few seconds.</p>
+<p style="margin:14px 0 4px"><b>Try this:</b></p><ul class="tries"><li>Change the second number from 10 to 3 and see the division become a decimal number.</li><li>Add a line for the modulus operator: <code>echo "Remainder: " . ($a % $b);</code></li></ul>
+<h2 id="xampp">Running it in XAMPP</h2><p>Save the file in C:\xampp\htdocs\phpbook\ch02 and open http://<code>localhost/phpbook/ch02/arithmetic.php</code>.</p>
+<h2 id="mistakes">Common mistakes</h2><ul><li>Setting the second number to 0, which stops the script with Division by zero.</li><li>Writing <code>$first</code> x <code>$second</code> for multiplication; PHP uses the asterisk *.</li><li>Writing 20 / 10 inside quotation marks, as in &quot;20 / 10&quot;, which prints the text instead of calculating it.</li></ul>
+<h2 id="viva">Viva questions</h2><details><summary>Name the arithmetic operators of PHP.</summary><div>+ (addition), - (subtraction), * (multiplication), / (division), % (modulus) and ** (exponentiation).</div></details><details><summary>Why does 20 / 10 print 2 but 20 / 3 print 6.6666666666667?</summary><div>When the division is exact, PHP returns an integer; otherwise it returns a float.</div></details><details><summary>What happens when you divide by zero in PHP 8?</summary><div>PHP throws a DivisionByZeroError (see Program 24).</div></details>
+<nav class="pnav"><a href="p02.html"><small>← Practical 2</small>Write a PHP code demonstrating variables and constants.</a><a class="next" href="p04.html"><small>Practical 4 →</small>Create a PHP code to check whether a number is even or odd.</a></nav>
+</main>
+<div class="wrap"><footer>Appendix to <i>Website Development Using PHP</i> by Dr. Puneet Kumar.</footer></div>
+<script src="assets/app.js?v=1"></script>
+<script src="assets/run.js?v=1"></script>
+</body>
+</html>

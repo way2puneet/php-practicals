@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practical 22: Write a PHP code to retrieve and display a session variable. · PHP</title>
+<meta name="description" content="To start a session, store a session variable on one page, and retrieve and display it on another page, with a fallback when it is absent.">
+<link rel="stylesheet" href="assets/style.css?v=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233a50c9'/%3E%3Ctext x='16' y='21' font-family='Arial' font-size='11' font-weight='700' fill='white' text-anchor='middle'%3EPHP%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="index.html">PHP <span>· Practicals</span></a>
+  <nav class="topnav"><a href="index.html">Programs</a><a href="setup.html">Setup</a></nav>
+</div></header>
+<main class="wrap">
+<div class="kicker">Practical 22 of 25</div>
+<h1>Write a PHP code to retrieve and display a session variable.</h1>
+<p class="lead">Program 9.1: Retrieving and Displaying a Session Variable</p>
+<div class="meta"><span class="chip">Book: Program 9.1 (Chapter 9)</span><span class="chip">Runs in this page</span></div>
+<div class="aim"><b>Aim</b>To start a session, store a session variable on one page, and retrieve and display it on another page, with a fallback when it is absent.</div>
+<nav class="toc"><a href="#learn">Concepts</a><a href="#code">Code</a><a href="#output">Output</a><a href="#how">How it works</a><a href="#run">Run it</a><a href="#xampp">In XAMPP</a><a href="#mistakes">Common mistakes</a><a href="#viva">Viva</a></nav>
+<h2 id="learn">Concepts used</h2>
+<p><code>session_start()</code>, creating, retrieving and modifying session variables, <code>isset()</code>, <code>session_id()</code>, fallback message.</p>
+<p><b>Test data:</b> Student name: Anika. The display page is opened, reloaded once, and finally opened in a new private browser window without visiting the first page.</p>
+<h3>Logic</h3><ol class="steps"><li>In <code>session-store.php</code>, start the session, store the student&#x27;s name and set a visit count of 0.</li><li>In <code>session-display.php</code>, resume the session.</li><li>If the name exists in the session, increase the visit count, and display a welcome message with the name and the count.</li><li>Otherwise, display a fallback message with a link to the first page.</li></ol>
+<h2 id="code">Code</h2>
+<div class="code"><div class="code-tabs" role="tablist"><button role="tab" aria-selected="true">session-store.php</button><button role="tab" aria-selected="false">session-display.php</button><span class="spacer"></span><button class="act dl" title="Download this file">Download</button><button class="act copy" title="Copy this file">Copy</button></div><div class="code-panel active" data-src="code/p22__session-store.php" data-name="session-store.php"><pre class="lang-php"><span class="ln"><span class="t-dir">&lt;?php</span></span><span class="ln">session_start();                      <span class="t-com">// must come before any output</span></span><span class="ln"> </span><span class="ln"><span class="t-attr">$_SESSION</span>[<span class="t-str">"student"</span>] = <span class="t-str">"Anika"</span>;       <span class="t-com">// create session variables</span></span><span class="ln"><span class="t-attr">$_SESSION</span>[<span class="t-str">"visits"</span>] = <span class="t-num">0</span>;</span><span class="ln"><span class="t-dir">?&gt;</span></span><span class="ln"><span class="t-dir">&lt;!DOCTYPE html&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">html</span> <span class="t-attr">lang</span>=<span class="t-val">"en"</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">head</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">meta</span> <span class="t-attr">charset</span>=<span class="t-val">"UTF-8"</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">title</span><span class="t-punc">&gt;</span>Store Session Data<span class="t-punc">&lt;/</span><span class="t-tag">title</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">head</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">body</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">h2</span><span class="t-punc">&gt;</span>Session Started<span class="t-punc">&lt;/</span><span class="t-tag">h2</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">p</span><span class="t-punc">&gt;</span>The name has been stored in the session.<span class="t-punc">&lt;/</span><span class="t-tag">p</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">p</span><span class="t-punc">&gt;</span>Session ID: <span class="t-dir">&lt;?php</span> <span class="t-kw">echo</span> session_id(); <span class="t-dir">?&gt;</span><span class="t-punc">&lt;/</span><span class="t-tag">p</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">p</span><span class="t-punc">&gt;</span><span class="t-punc">&lt;</span><span class="t-tag">a</span> <span class="t-attr">href</span>=<span class="t-val">"session-display.php"</span><span class="t-punc">&gt;</span>Go to the welcome page<span class="t-punc">&lt;/</span><span class="t-tag">a</span><span class="t-punc">&gt;</span><span class="t-punc">&lt;/</span><span class="t-tag">p</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">body</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">html</span><span class="t-punc">&gt;</span></span></pre></div><div class="code-panel" data-src="code/p22__session-display.php" data-name="session-display.php"><pre class="lang-php"><span class="ln"><span class="t-dir">&lt;?php</span></span><span class="ln">session_start();                      <span class="t-com">// resume the existing session</span></span><span class="ln"> </span><span class="ln"><span class="t-kw">if</span> (<span class="t-kw">isset</span>(<span class="t-attr">$_SESSION</span>[<span class="t-str">"student"</span>])) {</span><span class="ln">    <span class="t-attr">$_SESSION</span>[<span class="t-str">"visits"</span>]++;            <span class="t-com">// modify a session variable</span></span><span class="ln">}</span><span class="ln"><span class="t-dir">?&gt;</span></span><span class="ln"><span class="t-dir">&lt;!DOCTYPE html&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">html</span> <span class="t-attr">lang</span>=<span class="t-val">"en"</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">head</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">meta</span> <span class="t-attr">charset</span>=<span class="t-val">"UTF-8"</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">title</span><span class="t-punc">&gt;</span>Welcome<span class="t-punc">&lt;/</span><span class="t-tag">title</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">head</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">body</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-dir">&lt;?php</span> <span class="t-kw">if</span> (<span class="t-kw">isset</span>(<span class="t-attr">$_SESSION</span>[<span class="t-str">"student"</span>])): <span class="t-dir">?&gt;</span></span><span class="ln">        <span class="t-punc">&lt;</span><span class="t-tag">h2</span><span class="t-punc">&gt;</span>Welcome, <span class="t-dir">&lt;?php</span> <span class="t-kw">echo</span> htmlspecialchars(<span class="t-attr">$_SESSION</span>[<span class="t-str">"student"</span>]); <span class="t-dir">?&gt;</span>.<span class="t-punc">&lt;/</span><span class="t-tag">h2</span><span class="t-punc">&gt;</span></span><span class="ln">        <span class="t-punc">&lt;</span><span class="t-tag">p</span><span class="t-punc">&gt;</span>Visits to this page in the current session: <span class="t-dir">&lt;?php</span> <span class="t-kw">echo</span> <span class="t-attr">$_SESSION</span>[<span class="t-str">"visits"</span>]; <span class="t-dir">?&gt;</span><span class="t-punc">&lt;/</span><span class="t-tag">p</span><span class="t-punc">&gt;</span></span><span class="ln">        <span class="t-punc">&lt;</span><span class="t-tag">p</span><span class="t-punc">&gt;</span><span class="t-punc">&lt;</span><span class="t-tag">a</span> <span class="t-attr">href</span>=<span class="t-val">"session-display.php"</span><span class="t-punc">&gt;</span>Reload this page<span class="t-punc">&lt;/</span><span class="t-tag">a</span><span class="t-punc">&gt;</span><span class="t-punc">&lt;/</span><span class="t-tag">p</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-dir">&lt;?php</span> <span class="t-kw">else</span>: <span class="t-dir">?&gt;</span></span><span class="ln">        <span class="t-punc">&lt;</span><span class="t-tag">h2</span><span class="t-punc">&gt;</span>Welcome, Guest.<span class="t-punc">&lt;/</span><span class="t-tag">h2</span><span class="t-punc">&gt;</span></span><span class="ln">        <span class="t-punc">&lt;</span><span class="t-tag">p</span><span class="t-punc">&gt;</span>No session data was found. <span class="t-punc">&lt;</span><span class="t-tag">a</span> <span class="t-attr">href</span>=<span class="t-val">"session-store.php"</span><span class="t-punc">&gt;</span>Start a session<span class="t-punc">&lt;/</span><span class="t-tag">a</span><span class="t-punc">&gt;</span>.<span class="t-punc">&lt;/</span><span class="t-tag">p</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-dir">&lt;?php</span> <span class="t-kw">endif</span>; <span class="t-dir">?&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">body</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">html</span><span class="t-punc">&gt;</span></span></pre></div></div>
+<h2 id="output">Output</h2>
+<p class="tryhint" style="margin-top:0">These are real screenshots, taken by running the program with the test data.</p><figure class="shot"><div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">localhost/phpbook/…/session-store.php</span></div><img src="img/p22_1.png" alt="Output of session-store.php" loading="lazy"><figcaption>Output of session-store.php</figcaption></figure><figure class="shot"><div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">localhost/phpbook/…/session-display.php</span></div><img src="img/p22_2.png" alt="Output of session-display.php after one reload" loading="lazy"><figcaption>Output of session-display.php after one reload</figcaption></figure><figure class="shot"><div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">localhost/phpbook/…/session-display.php</span></div><img src="img/p22_3.png" alt="Output of session-display.php in a new private window" loading="lazy"><figcaption>Output of session-display.php in a new private window</figcaption></figure>
+<h3>Understanding the output</h3><p>The session ID is a random sample value; a different ID is created for every new session. The welcome page displayed the name stored on another page, which shows that the session variable survived from one request to the next. The count 2 shows that the value was modified and saved on each visit. The last output shows that a browser without the session cookie belongs to a different, empty session, and that the fallback prevents a warning.</p>
+<h2 id="how">How it works</h2><p>Storing: <code>session-store.php</code> calls <code>session_start()</code> before any output. Since the browser has no session ID yet, PHP creates a new session and arranges to send the PHPSESSID cookie. The two assignments create the session variables, which PHP saves at the end of the request. The page also displays the session ID through <code>session_id()</code>.</p><p>Retrieving: When the link is clicked, the browser sends the PHPSESSID cookie with the request for <code>session-display.php</code>. <code>session_start()</code> uses the ID to load the stored data, so <code>$_SESSION[&quot;student&quot;]</code> exists. The program increases the visit count and displays the welcome message and the count. Each reload increases the count by one.</p><p>Fallback: In a new private window, the browser has no session cookie, so <code>session_start()</code> creates a new, empty session. The check isset(<code>$_SESSION[&quot;student&quot;]</code>) returns false, the count is not changed, and the else part displays the guest message instead of producing a warning.</p>
+<h2 id="run">Run it yourself</h2>
+<div class="php-runner">
+<script type="application/json">{"entries": ["session-store.php", "session-display.php"], "dirs": [], "folder": "ch09"}</script>
+<div class="pr-tabs"><button type="button" data-file="session-store.php" aria-selected="true">session-store.php</button><button type="button" data-file="session-display.php" aria-selected="false">session-display.php</button></div>
+<textarea data-file="session-store.php" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="session-store.php (editable)" rows="21">&lt;?php
+session_start();                      // must come before any output
+
+$_SESSION[&quot;student&quot;] = &quot;Anika&quot;;       // create session variables
+$_SESSION[&quot;visits&quot;] = 0;
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Store Session Data&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;Session Started&lt;/h2&gt;
+    &lt;p&gt;The name has been stored in the session.&lt;/p&gt;
+    &lt;p&gt;Session ID: &lt;?php echo session_id(); ?&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;session-display.php&quot;&gt;Go to the welcome page&lt;/a&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea><textarea data-file="session-display.php" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="session-display.php (editable)" hidden rows="26">&lt;?php
+session_start();                      // resume the existing session
+
+if (isset($_SESSION[&quot;student&quot;])) {
+    $_SESSION[&quot;visits&quot;]++;            // modify a session variable
+}
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Welcome&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;?php if (isset($_SESSION[&quot;student&quot;])): ?&gt;
+        &lt;h2&gt;Welcome, &lt;?php echo htmlspecialchars($_SESSION[&quot;student&quot;]); ?&gt;.&lt;/h2&gt;
+        &lt;p&gt;Visits to this page in the current session: &lt;?php echo $_SESSION[&quot;visits&quot;]; ?&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;a href=&quot;session-display.php&quot;&gt;Reload this page&lt;/a&gt;&lt;/p&gt;
+    &lt;?php else: ?&gt;
+        &lt;h2&gt;Welcome, Guest.&lt;/h2&gt;
+        &lt;p&gt;No session data was found. &lt;a href=&quot;session-store.php&quot;&gt;Start a session&lt;/a&gt;.&lt;/p&gt;
+    &lt;?php endif; ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+<div class="runner-bar"><select class="pr-entry" aria-label="Page to open"><option>session-store.php</option><option>session-display.php</option></select>
+  <button class="btn reset-code" type="button">Reset code</button><button class="btn clear-state" type="button" title="Like opening a new private window">Clear cookies &amp; session</button><button class="btn run" type="button">Run ▶</button></div>
+<div class="status">Press <b>Run</b> to open the page in the browser below. You can edit any file first.</div>
+<div class="pr-browser">
+  <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url pr-url">localhost/phpbook/ch09/session-store.php</span>
+  <span class="pr-view"><button type="button" data-view="page" aria-selected="true">Page</button><button type="button" data-view="source" aria-selected="false">HTML sent</button></span></div>
+  <div class="pr-page"><iframe title="Output of the program" sandbox="allow-same-origin allow-forms"></iframe></div>
+  <div class="pr-source" hidden><pre></pre></div>
+  <div class="pr-state" hidden></div>
+</div>
+</div>
+<p class="tryhint">Real PHP 8.3 runs inside your browser (nothing is sent to a server). Forms, links, cookies and sessions work as they do in XAMPP. The first run downloads PHP, so it needs internet and takes a few seconds.</p>
+<p style="margin:14px 0 4px"><b>Try this:</b></p><ul class="tries"><li>Open session-store.php, follow the link, then reload the welcome page a few times.</li><li>Click "Clear cookies & session" (like a new private window) and open session-display.php.</li></ul>
+<h2 id="xampp">Running it in XAMPP</h2><p>Start Apache, save both files in C:\xampp\htdocs\phpbook\ch09, open http://<code>localhost/phpbook/ch09/session-store.php</code>, click Go to the welcome page, then click Reload this page. Finally, open http://<code>localhost/phpbook/ch09/session-display.php</code> in a new private window.</p>
+<h2 id="mistakes">Common mistakes</h2><ul><li>Omitting <code>session_start()</code> on the display page, so that <code>$_SESSION</code> is empty although the data exists on the server.</li><li>Writing HTML or a blank line before <code>session_start()</code>.</li><li>Reading <code>$_SESSION[&quot;student&quot;]</code> without <code>isset()</code> or ??, which gives a warning when the session has no such variable.</li><li>Expecting the session to be shared between two different browsers; each browser has its own session cookie.</li></ul>
+<h2 id="viva">Viva questions</h2><details><summary>What is a session?</summary><div>A way of keeping data for one user across many pages; the data is stored on the server and identified by a session ID.</div></details><details><summary>Why must session_start() come before any output?</summary><div>It may need to send the session cookie in the HTTP headers, which must be sent before the page content.</div></details><details><summary>Difference between a session and a cookie?</summary><div>Session data is stored on the server; cookie data is stored in the browser. A session usually uses a cookie only to remember its ID.</div></details>
+<nav class="pnav"><a href="p21.html"><small>← Practical 21</small>Write a PHP code that sets a cookie based on user input.</a><a class="next" href="p23.html"><small>Practical 23 →</small>Demonstrate exception handling during database connection using try–catch.</a></nav>
+</main>
+<div class="wrap"><footer>Appendix to <i>Website Development Using PHP</i> by Dr. Puneet Kumar.</footer></div>
+<script src="assets/app.js?v=1"></script>
+<script src="assets/run.js?v=1"></script>
+</body>
+</html>

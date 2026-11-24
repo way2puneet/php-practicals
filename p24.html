@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practical 24: Write a PHP code to handle different types of exceptions using multiple catch blocks. · PHP</title>
+<meta name="description" content="To write a PHP program that handles different exception types using multiple catch blocks.">
+<link rel="stylesheet" href="assets/style.css?v=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233a50c9'/%3E%3Ctext x='16' y='21' font-family='Arial' font-size='11' font-weight='700' fill='white' text-anchor='middle'%3EPHP%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="index.html">PHP <span>· Practicals</span></a>
+  <nav class="topnav"><a href="index.html">Programs</a><a href="setup.html">Setup</a></nav>
+</div></header>
+<main class="wrap">
+<div class="kicker">Practical 24 of 25</div>
+<h1>Write a PHP code to handle different types of exceptions using multiple catch blocks.</h1>
+<p class="lead">Program 10.6: Handling Different Exception Types Using Multiple Catch Blocks</p>
+<div class="meta"><span class="chip">Book: Program 10.6 (Chapter 10)</span><span class="chip">Runs in this page</span></div>
+<div class="aim"><b>Aim</b>To write a PHP program that handles different exception types using multiple catch blocks.</div>
+<nav class="toc"><a href="#learn">Concepts</a><a href="#code">Code</a><a href="#output">Output</a><a href="#how">How it works</a><a href="#run">Run it</a><a href="#xampp">In XAMPP</a><a href="#mistakes">Common mistakes</a><a href="#viva">Viva</a></nav>
+<h2 id="learn">Concepts used</h2>
+<p>InvalidArgumentException, LengthException, DivisionByZeroError, Exception, multiple catch blocks in order from specific to general, throw new.</p>
+<p><b>Test data:</b> The four sets of student details given in Table 10.5, each containing a name, an age, total marks and the number of subjects.</p>
+<h3>Logic</h3><ol class="steps"><li>Define checkStudent(<code>$name</code>, <code>$age</code>, <code>$total</code>, <code>$subjects</code>), which throws an InvalidArgumentException for an age that is not positive, a LengthException for a name shorter than three characters, and otherwise calculates the average, which throws a DivisionByZeroError when the number of subjects is zero.</li><li>For each set of details, call the function inside a try block.</li><li>Write one catch block for each class, from the specific classes to the general Exception.</li></ol>
+<h2 id="code">Code</h2>
+<div class="code"><div class="code-tabs" role="tablist"><button role="tab" aria-selected="true">multiple-catch.php</button><span class="spacer"></span><button class="act dl" title="Download this file">Download</button><button class="act copy" title="Copy this file">Copy</button></div><div class="code-panel active" data-src="code/p24__multiple-catch.php" data-name="multiple-catch.php"><pre class="lang-php"><span class="ln"><span class="t-dir">&lt;?php</span></span><span class="ln"><span class="t-com">// Checks student details and returns the average marks</span></span><span class="ln"><span class="t-kw">function</span> checkStudent(<span class="t-attr">$name</span>, <span class="t-attr">$age</span>, <span class="t-attr">$total</span>, <span class="t-attr">$subjects</span>)</span><span class="ln">{</span><span class="ln">    <span class="t-kw">if</span> (<span class="t-attr">$age</span> &lt;= <span class="t-num">0</span>) {</span><span class="ln">        <span class="t-kw">throw</span> <span class="t-kw">new</span> InvalidArgumentException(<span class="t-str">"Age must be positive."</span>);</span><span class="ln">    }</span><span class="ln">    <span class="t-kw">if</span> (strlen(<span class="t-attr">$name</span>) &lt; <span class="t-num">3</span>) {</span><span class="ln">        <span class="t-kw">throw</span> <span class="t-kw">new</span> LengthException(<span class="t-str">"Name must have at least 3 characters."</span>);</span><span class="ln">    }</span><span class="ln">    <span class="t-attr">$average</span> = <span class="t-attr">$total</span> / <span class="t-attr">$subjects</span>;  <span class="t-com">// throws DivisionByZeroError if $subjects is 0</span></span><span class="ln">    <span class="t-kw">return</span> <span class="t-str">"$name: average marks "</span> . round(<span class="t-attr">$average</span>, <span class="t-num">2</span>);</span><span class="ln">}</span><span class="ln"><span class="t-dir">?&gt;</span></span><span class="ln"><span class="t-dir">&lt;!DOCTYPE html&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">html</span> <span class="t-attr">lang</span>=<span class="t-val">"en"</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">head</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">meta</span> <span class="t-attr">charset</span>=<span class="t-val">"UTF-8"</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">title</span><span class="t-punc">&gt;</span>Multiple Catch Blocks<span class="t-punc">&lt;/</span><span class="t-tag">title</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">head</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">body</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-dir">&lt;?php</span></span><span class="ln">    <span class="t-attr">$students</span> = [</span><span class="ln">        [<span class="t-str">"Riya"</span>, <span class="t-num">19</span>, <span class="t-num">232</span>, <span class="t-num">3</span>],</span><span class="ln">        [<span class="t-str">"Aarav"</span>, -<span class="t-num">2</span>, <span class="t-num">250</span>, <span class="t-num">3</span>],</span><span class="ln">        [<span class="t-str">"Al"</span>, <span class="t-num">20</span>, <span class="t-num">180</span>, <span class="t-num">2</span>],</span><span class="ln">        [<span class="t-str">"Neha"</span>, <span class="t-num">21</span>, <span class="t-num">150</span>, <span class="t-num">0</span>],</span><span class="ln">    ];</span><span class="ln"> </span><span class="ln">    <span class="t-kw">foreach</span> (<span class="t-attr">$students</span> <span class="t-kw">as</span> <span class="t-attr">$s</span>) {</span><span class="ln">        <span class="t-kw">try</span> {</span><span class="ln">            <span class="t-kw">echo</span> checkStudent(<span class="t-attr">$s</span>[<span class="t-num">0</span>], <span class="t-attr">$s</span>[<span class="t-num">1</span>], <span class="t-attr">$s</span>[<span class="t-num">2</span>], <span class="t-attr">$s</span>[<span class="t-num">3</span>]) . <span class="t-str">"&lt;br&gt;"</span>;</span><span class="ln">        } <span class="t-kw">catch</span> (InvalidArgumentException <span class="t-attr">$e</span>) {</span><span class="ln">            <span class="t-kw">echo</span> <span class="t-str">"InvalidArgumentException caught: "</span> . <span class="t-attr">$e</span>-&gt;getMessage() . <span class="t-str">"&lt;br&gt;"</span>;</span><span class="ln">        } <span class="t-kw">catch</span> (LengthException <span class="t-attr">$e</span>) {</span><span class="ln">            <span class="t-kw">echo</span> <span class="t-str">"LengthException caught: "</span> . <span class="t-attr">$e</span>-&gt;getMessage() . <span class="t-str">"&lt;br&gt;"</span>;</span><span class="ln">        } <span class="t-kw">catch</span> (DivisionByZeroError <span class="t-attr">$e</span>) {</span><span class="ln">            <span class="t-kw">echo</span> <span class="t-str">"DivisionByZeroError caught: "</span> . <span class="t-attr">$e</span>-&gt;getMessage()</span><span class="ln">                . <span class="t-str">" (no subjects entered for "</span> . <span class="t-attr">$s</span>[<span class="t-num">0</span>] . <span class="t-str">")&lt;br&gt;"</span>;</span><span class="ln">        } <span class="t-kw">catch</span> (Exception <span class="t-attr">$e</span>) {</span><span class="ln">            <span class="t-kw">echo</span> <span class="t-str">"Other exception caught: "</span> . <span class="t-attr">$e</span>-&gt;getMessage() . <span class="t-str">"&lt;br&gt;"</span>;</span><span class="ln">        }</span><span class="ln">    }</span><span class="ln">    <span class="t-dir">?&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">body</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">html</span><span class="t-punc">&gt;</span></span></pre></div></div>
+<h2 id="output">Output</h2>
+<p class="tryhint" style="margin-top:0">These are real screenshots, taken by running the program with the test data.</p><figure class="shot"><div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">localhost/phpbook/…/multiple-catch.php</span></div><img src="img/p24_1.png" alt="Output" loading="lazy"><figcaption>Output</figcaption></figure>
+<h3>Understanding the output</h3><p>The first line is the normal result for valid details. Each of the next three lines was produced by a different catch block, selected by the class of the thrown object, so each problem received its own message. The catch (Exception <code>$e</code>) block was not needed for these data, but it ensures that any other exception derived from Exception would still be handled.</p>
+<p class="tcap">Table 10.5: Test Data and Results for Program 10.6</p><table class="t"><tr><th>Name</th><th>Age</th><th>Total</th><th>Subjects</th><th>Exception Thrown</th><th>Block Executed</th></tr><tr><td>Riya</td><td>19</td><td>232</td><td>3</td><td>None</td><td>None (average displayed)</td></tr><tr><td>Aarav</td><td>-2</td><td>250</td><td>3</td><td>InvalidArgumentException</td><td>First</td></tr><tr><td>Al</td><td>20</td><td>180</td><td>2</td><td>LengthException</td><td>Second</td></tr><tr><td>Neha</td><td>21</td><td>150</td><td>0</td><td>DivisionByZeroError</td><td>Third</td></tr></table>
+<h2 id="how">How it works</h2><p>Throwing different classes: The function checks the age first and then the length of the name, throwing a different class for each problem. If both checks pass, it divides the total by the number of subjects; for zero subjects, PHP itself throws a DivisionByZeroError. For valid details, it returns the name with the rounded average.</p><p>Selecting the catch block: For each set of details, PHP compares the class of the thrown object with the catch blocks from the top. The age problem matches the first block, the name problem the second, and the division by zero the third. The final catch (Exception <code>$e</code>) block is kept for any other exception and is placed last, because it would otherwise catch the InvalidArgumentException and LengthException objects, which are derived from Exception. After the matching block, the loop continues with the next student.</p>
+<h2 id="run">Run it yourself</h2>
+<div class="php-runner">
+<script type="application/json">{"entries": ["multiple-catch.php"], "dirs": [], "folder": "ch10"}</script>
+<div class="pr-tabs"><button type="button" data-file="multiple-catch.php" aria-selected="true">multiple-catch.php</button></div>
+<textarea data-file="multiple-catch.php" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="multiple-catch.php (editable)" rows="26">&lt;?php
+// Checks student details and returns the average marks
+function checkStudent($name, $age, $total, $subjects)
+{
+    if ($age &lt;= 0) {
+        throw new InvalidArgumentException(&quot;Age must be positive.&quot;);
+    }
+    if (strlen($name) &lt; 3) {
+        throw new LengthException(&quot;Name must have at least 3 characters.&quot;);
+    }
+    $average = $total / $subjects;  // throws DivisionByZeroError if $subjects is 0
+    return &quot;$name: average marks &quot; . round($average, 2);
+}
+?&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Multiple Catch Blocks&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;?php
+    $students = [
+        [&quot;Riya&quot;, 19, 232, 3],
+        [&quot;Aarav&quot;, -2, 250, 3],
+        [&quot;Al&quot;, 20, 180, 2],
+        [&quot;Neha&quot;, 21, 150, 0],
+    ];
+
+    foreach ($students as $s) {
+        try {
+            echo checkStudent($s[0], $s[1], $s[2], $s[3]) . &quot;&lt;br&gt;&quot;;
+        } catch (InvalidArgumentException $e) {
+            echo &quot;InvalidArgumentException caught: &quot; . $e-&gt;getMessage() . &quot;&lt;br&gt;&quot;;
+        } catch (LengthException $e) {
+            echo &quot;LengthException caught: &quot; . $e-&gt;getMessage() . &quot;&lt;br&gt;&quot;;
+        } catch (DivisionByZeroError $e) {
+            echo &quot;DivisionByZeroError caught: &quot; . $e-&gt;getMessage()
+                . &quot; (no subjects entered for &quot; . $s[0] . &quot;)&lt;br&gt;&quot;;
+        } catch (Exception $e) {
+            echo &quot;Other exception caught: &quot; . $e-&gt;getMessage() . &quot;&lt;br&gt;&quot;;
+        }
+    }
+    ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+<div class="runner-bar"><span class="pr-name">multiple-catch.php</span>
+  <button class="btn reset-code" type="button">Reset code</button><button class="btn clear-state" type="button" title="Like opening a new private window">Clear cookies &amp; session</button><button class="btn run" type="button">Run ▶</button></div>
+<div class="status">Press <b>Run</b> to open the page in the browser below. You can edit any file first.</div>
+<div class="pr-browser">
+  <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url pr-url">localhost/phpbook/ch10/multiple-catch.php</span>
+  <span class="pr-view"><button type="button" data-view="page" aria-selected="true">Page</button><button type="button" data-view="source" aria-selected="false">HTML sent</button></span></div>
+  <div class="pr-page"><iframe title="Output of the program" sandbox="allow-same-origin allow-forms"></iframe></div>
+  <div class="pr-source" hidden><pre></pre></div>
+  <div class="pr-state" hidden></div>
+</div>
+</div>
+<p class="tryhint">Real PHP 8.3 runs inside your browser (nothing is sent to a server). Forms, links, cookies and sessions work as they do in XAMPP. The first run downloads PHP, so it needs internet and takes a few seconds.</p>
+<p style="margin:14px 0 4px"><b>Try this:</b></p><ul class="tries"><li>Change Riya’s age to -1, or her name to "Ri".</li><li>Remove the <code>catch (LengthException $e)</code> block. Which block catches that error now?</li></ul>
+<h2 id="xampp">Running it in XAMPP</h2><p>Save the file in C:\xampp\htdocs\phpbook\ch10 and open http://<code>localhost/phpbook/ch10/multiple-catch.php</code>.</p>
+<h2 id="mistakes">Common mistakes</h2><ul><li>Writing catch (Exception <code>$e</code>) before the specific blocks, so that the specific blocks never run.</li><li>Expecting catch (Exception <code>$e</code>) to catch DivisionByZeroError, which is not derived from Exception.</li><li>Using multi-catch for exceptions that need different responses.</li></ul>
+<h2 id="viva">Viva questions</h2><details><summary>Why use more than one catch block?</summary><div>To handle each type of error differently, with its own message.</div></details><details><summary>In which order should catch blocks be written?</summary><div>From the most specific class to the most general (Exception last), because the first matching block is used.</div></details><details><summary>Is DivisionByZeroError an Exception?</summary><div>No. It is an Error (it extends ArithmeticError). Both Exception and Error implement Throwable.</div></details>
+<nav class="pnav"><a href="p23.html"><small>← Practical 23</small>Demonstrate exception handling during database connection using try–catch.</a><a class="next" href="p25.html"><small>Practical 25 →</small>Write a PHP code to create and throw a user-defined exception class.</a></nav>
+</main>
+<div class="wrap"><footer>Appendix to <i>Website Development Using PHP</i> by Dr. Puneet Kumar.</footer></div>
+<script src="assets/app.js?v=1"></script>
+<script src="assets/run.js?v=1"></script>
+</body>
+</html>

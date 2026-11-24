@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practical 13: Write a PHP code to demonstrate file inclusion function – include(). · PHP</title>
+<meta name="description" content="To write a PHP program that demonstrates the include statement by using a common header and footer on a page.">
+<link rel="stylesheet" href="assets/style.css?v=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233a50c9'/%3E%3Ctext x='16' y='21' font-family='Arial' font-size='11' font-weight='700' fill='white' text-anchor='middle'%3EPHP%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="index.html">PHP <span>· Practicals</span></a>
+  <nav class="topnav"><a href="index.html">Programs</a><a href="setup.html">Setup</a></nav>
+</div></header>
+<main class="wrap">
+<div class="kicker">Practical 13 of 25</div>
+<h1>Write a PHP code to demonstrate file inclusion function – include().</h1>
+<p class="lead">Program 4.5: Demonstrating include</p>
+<div class="meta"><span class="chip">Book: Program 4.5 (Chapter 4)</span><span class="chip">Runs in this page</span></div>
+<div class="aim"><b>Aim</b>To write a PHP program that demonstrates the include statement by using a common header and footer on a page.</div>
+<nav class="toc"><a href="#learn">Concepts</a><a href="#code">Code</a><a href="#output">Output</a><a href="#how">How it works</a><a href="#run">Run it</a><a href="#xampp">In XAMPP</a><a href="#mistakes">Common mistakes</a><a href="#viva">Viva</a></nav>
+<h2 id="learn">Concepts used</h2>
+<p>The include statement, reusable files, relative paths, variables shared between files.</p>
+<p><b>Test data:</b> College name Green Valley College, set in the header file; page content prepared in the main file.</p>
+<h3>Logic</h3><ol class="steps"><li>Create <code>includes/header.php</code>, which stores the college name in a variable and prints the common header.</li><li>Create <code>includes/footer.php</code>, which prints the common footer.</li><li>In <code>include-demo.php</code>, include the header, print the main content using the variable from the header, and include the footer.</li></ol>
+<h2 id="code">Code</h2>
+<p class="tryhint" style="margin:0 0 6px">Create a folder named <code>includes</code> next to the main file, and save the shared files in it.</p><div class="code"><div class="code-tabs" role="tablist"><button role="tab" aria-selected="true">include-demo.php</button><button role="tab" aria-selected="false">includes/header.php</button><button role="tab" aria-selected="false">includes/footer.php</button><span class="spacer"></span><button class="act dl" title="Download this file">Download</button><button class="act copy" title="Copy this file">Copy</button></div><div class="code-panel active" data-src="code/p13__include-demo.php" data-name="include-demo.php"><pre class="lang-php"><span class="ln"><span class="t-dir">&lt;!DOCTYPE html&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">html</span> <span class="t-attr">lang</span>=<span class="t-val">"en"</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">head</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">meta</span> <span class="t-attr">charset</span>=<span class="t-val">"UTF-8"</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">title</span><span class="t-punc">&gt;</span>include Demonstration<span class="t-punc">&lt;/</span><span class="t-tag">title</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">head</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">body</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-dir">&lt;?php</span></span><span class="ln">    <span class="t-kw">include</span> <span class="t-str">"includes/header.php"</span>;</span><span class="ln"> </span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"&lt;p&gt;Main page content.&lt;/p&gt;"</span>;</span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"&lt;p&gt;This page belongs to $siteName.&lt;/p&gt;"</span>;</span><span class="ln"> </span><span class="ln">    <span class="t-kw">include</span> <span class="t-str">"includes/footer.php"</span>;</span><span class="ln">    <span class="t-dir">?&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">body</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">html</span><span class="t-punc">&gt;</span></span></pre></div><div class="code-panel" data-src="code/p13__includes__header.php" data-name="header.php"><pre class="lang-php"><span class="ln"><span class="t-dir">&lt;?php</span></span><span class="ln"><span class="t-com">// Common header used by many pages</span></span><span class="ln"><span class="t-attr">$siteName</span> = <span class="t-str">"Green Valley College"</span>;</span><span class="ln"><span class="t-dir">?&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">h2</span><span class="t-punc">&gt;</span><span class="t-dir">&lt;?php</span> <span class="t-kw">echo</span> <span class="t-attr">$siteName</span>; <span class="t-dir">?&gt;</span><span class="t-punc">&lt;/</span><span class="t-tag">h2</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">p</span><span class="t-punc">&gt;</span>Common header loaded.<span class="t-punc">&lt;/</span><span class="t-tag">p</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">hr</span><span class="t-punc">&gt;</span></span></pre></div><div class="code-panel" data-src="code/p13__includes__footer.php" data-name="footer.php"><pre class="lang-php"><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">hr</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">p</span><span class="t-punc">&gt;</span>Common footer loaded. &amp;copy; Green Valley College, Ludhiana<span class="t-punc">&lt;/</span><span class="t-tag">p</span><span class="t-punc">&gt;</span></span></pre></div></div>
+<h2 id="output">Output</h2>
+<p class="tryhint" style="margin-top:0">These are real screenshots, taken by running the program with the test data.</p><figure class="shot"><div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">localhost/phpbook/…/include-demo.php</span></div><img src="img/p13_1.png" alt="Output" loading="lazy"><figcaption>Output</figcaption></figure>
+<h3>Understanding the output</h3><p>The heading and the first message come from <code>header.php</code>, the next two lines from <code>include-demo.php</code> and the last line from <code>footer.php</code>; the horizontal lines represent the <code>&lt;hr&gt;</code> elements. The page source in the browser shows one continuous HTML document, with no trace of the three separate files or of the include statements. Any other page that includes the same two files shows the same header and footer.</p>
+<h2 id="how">How it works</h2><p>When <code>include-demo.php</code> is requested, PHP reaches the first include statement and inserts <code>includes/header.php</code>. The PHP block of the header stores the college name in <code>$siteName</code>, and its HTML part outputs the heading, the message &quot;Common header loaded.&quot; and a horizontal line. Control then returns to the main file, which prints its own content. The variable <code>$siteName</code>, created in the included file, is available in the main file, so the second paragraph shows the college name. Finally, the footer file is included and its HTML is output.</p>
+<h2 id="run">Run it yourself</h2>
+<div class="php-runner">
+<script type="application/json">{"entries": ["include-demo.php"], "dirs": [], "folder": "ch04"}</script>
+<div class="pr-tabs"><button type="button" data-file="include-demo.php" aria-selected="true">include-demo.php</button><button type="button" data-file="includes/header.php" aria-selected="false">includes/header.php</button><button type="button" data-file="includes/footer.php" aria-selected="false">includes/footer.php</button></div>
+<textarea data-file="include-demo.php" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="include-demo.php (editable)" rows="19">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;include Demonstration&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;?php
+    include &quot;includes/header.php&quot;;
+
+    echo &quot;&lt;p&gt;Main page content.&lt;/p&gt;&quot;;
+    echo &quot;&lt;p&gt;This page belongs to $siteName.&lt;/p&gt;&quot;;
+
+    include &quot;includes/footer.php&quot;;
+    ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea><textarea data-file="includes/header.php" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="includes/header.php (editable)" hidden rows="10">&lt;?php
+// Common header used by many pages
+$siteName = &quot;Green Valley College&quot;;
+?&gt;
+&lt;h2&gt;&lt;?php echo $siteName; ?&gt;&lt;/h2&gt;
+&lt;p&gt;Common header loaded.&lt;/p&gt;
+&lt;hr&gt;</textarea><textarea data-file="includes/footer.php" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="includes/footer.php (editable)" hidden rows="10">&lt;hr&gt;
+&lt;p&gt;Common footer loaded. &amp;copy; Green Valley College, Ludhiana&lt;/p&gt;</textarea>
+<div class="runner-bar"><span class="pr-name">include-demo.php</span>
+  <button class="btn reset-code" type="button">Reset code</button><button class="btn clear-state" type="button" title="Like opening a new private window">Clear cookies &amp; session</button><button class="btn run" type="button">Run ▶</button></div>
+<div class="status">Press <b>Run</b> to open the page in the browser below. You can edit any file first.</div>
+<div class="pr-browser">
+  <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url pr-url">localhost/phpbook/ch04/include-demo.php</span>
+  <span class="pr-view"><button type="button" data-view="page" aria-selected="true">Page</button><button type="button" data-view="source" aria-selected="false">HTML sent</button></span></div>
+  <div class="pr-page"><iframe title="Output of the program" sandbox="allow-same-origin allow-forms"></iframe></div>
+  <div class="pr-source" hidden><pre></pre></div>
+  <div class="pr-state" hidden></div>
+</div>
+</div>
+<p class="tryhint">Real PHP 8.3 runs inside your browser (nothing is sent to a server). Forms, links, cookies and sessions work as they do in XAMPP. The first run downloads PHP, so it needs internet and takes a few seconds.</p>
+<p style="margin:14px 0 4px"><b>Try this:</b></p><ul class="tries"><li>Change the college name in <code>includes/header.php</code> and run again.</li><li>Change the first include to <code>include "includes/head.php";</code> (a wrong name). The page shows a warning but continues.</li></ul>
+<h2 id="xampp">Running it in XAMPP</h2><p>Create the folder includes inside C:\xampp\htdocs\phpbook\ch04, save the three files in their folders, and open http://<code>localhost/phpbook/ch04/include-demo.php</code>. The shared files are not opened directly; they are used through the main file.</p>
+<h2 id="mistakes">Common mistakes</h2><ul><li>Writing the path as <code>header.php</code> when the file is inside the includes folder, which produces a warning and leaves out the header.</li><li>Omitting &lt;?php in an included file, so that its PHP code is printed as text.</li><li>Using a variable of the included file before the include statement.</li></ul>
+<h2 id="viva">Viva questions</h2><details><summary>What does include do?</summary><div>It inserts and runs the code of another file at that point in the script.</div></details><details><summary>What happens if an included file is missing?</summary><div>PHP shows a warning and the rest of the page still runs.</div></details><details><summary>Why are common headers and footers kept in separate files?</summary><div>They are written once and used on every page, so a change is made in only one place.</div></details>
+<nav class="pnav"><a href="p12.html"><small>← Practical 12</small>Write a user-defined function to find the largest number in an array.</a><a class="next" href="p14.html"><small>Practical 14 →</small>Write a PHP code to demonstrate file inclusion function – require().</a></nav>
+</main>
+<div class="wrap"><footer>Appendix to <i>Website Development Using PHP</i> by Dr. Puneet Kumar.</footer></div>
+<script src="assets/app.js?v=1"></script>
+<script src="assets/run.js?v=1"></script>
+</body>
+</html>

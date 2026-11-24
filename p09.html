@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practical 9: Write a PHP code to demonstrate various loop iterative functions. · PHP</title>
+<meta name="description" content="To write a PHP program that demonstrates array iteration with foreach and the array pointer functions current(), next(), prev(), end() and reset().">
+<link rel="stylesheet" href="assets/style.css?v=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233a50c9'/%3E%3Ctext x='16' y='21' font-family='Arial' font-size='11' font-weight='700' fill='white' text-anchor='middle'%3EPHP%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="index.html">PHP <span>· Practicals</span></a>
+  <nav class="topnav"><a href="index.html">Programs</a><a href="setup.html">Setup</a></nav>
+</div></header>
+<main class="wrap">
+<div class="kicker">Practical 9 of 25</div>
+<h1>Write a PHP code to demonstrate various loop iterative functions.</h1>
+<p class="lead">Program 5.5: Demonstrating Array Iteration and Pointer Functions</p>
+<div class="meta"><span class="chip">Book: Program 5.5 (Chapter 5)</span><span class="chip">Runs in this page</span></div>
+<div class="aim"><b>Aim</b>To write a PHP program that demonstrates array iteration with foreach and the array pointer functions <code>current()</code>, <code>next()</code>, <code>prev()</code>, <code>end()</code> and <code>reset()</code>.</div>
+<nav class="toc"><a href="#learn">Concepts</a><a href="#code">Code</a><a href="#output">Output</a><a href="#how">How it works</a><a href="#run">Run it</a><a href="#xampp">In XAMPP</a><a href="#mistakes">Common mistakes</a><a href="#viva">Viva</a></nav>
+<h2 id="learn">Concepts used</h2>
+<p>foreach with values and with keys and values, the internal array pointer, the five pointer functions.</p>
+<p><b>Test data:</b> Array of colours: Red, Green, Blue.</p>
+<h3>Logic</h3><ol class="steps"><li>Create the array.</li><li>Display all elements with foreach, first values only and then keys with values.</li><li>Display the current element.</li><li>Move the pointer with <code>next()</code>, <code>prev()</code>, <code>end()</code> and <code>reset()</code>, displaying the value returned by each.</li></ol>
+<h2 id="code">Code</h2>
+<div class="code"><div class="code-tabs" role="tablist"><button role="tab" aria-selected="true">pointer-functions.php</button><span class="spacer"></span><button class="act dl" title="Download this file">Download</button><button class="act copy" title="Copy this file">Copy</button></div><div class="code-panel active" data-src="code/p09__pointer-functions.php" data-name="pointer-functions.php"><pre class="lang-php"><span class="ln"><span class="t-dir">&lt;!DOCTYPE html&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">html</span> <span class="t-attr">lang</span>=<span class="t-val">"en"</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">head</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">meta</span> <span class="t-attr">charset</span>=<span class="t-val">"UTF-8"</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">title</span><span class="t-punc">&gt;</span>Array Iteration and Pointer Functions<span class="t-punc">&lt;/</span><span class="t-tag">title</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">head</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">body</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-dir">&lt;?php</span></span><span class="ln">    <span class="t-attr">$colours</span> = [<span class="t-str">"Red"</span>, <span class="t-str">"Green"</span>, <span class="t-str">"Blue"</span>];</span><span class="ln"> </span><span class="ln">    <span class="t-com">// Iteration with foreach (PHP 8 replacement for each())</span></span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"&lt;h3&gt;Iteration with foreach&lt;/h3&gt;"</span>;</span><span class="ln">    <span class="t-kw">foreach</span> (<span class="t-attr">$colours</span> <span class="t-kw">as</span> <span class="t-attr">$colour</span>) {</span><span class="ln">        <span class="t-kw">echo</span> <span class="t-attr">$colour</span> . <span class="t-str">" "</span>;</span><span class="ln">    }</span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"&lt;br&gt;"</span>;</span><span class="ln">    <span class="t-kw">foreach</span> (<span class="t-attr">$colours</span> <span class="t-kw">as</span> <span class="t-attr">$index</span> =&gt; <span class="t-attr">$colour</span>) {</span><span class="ln">        <span class="t-kw">echo</span> <span class="t-str">"Index $index: $colour&lt;br&gt;"</span>;</span><span class="ln">    }</span><span class="ln"> </span><span class="ln">    <span class="t-com">// Pointer functions</span></span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"&lt;h3&gt;Pointer Functions&lt;/h3&gt;"</span>;</span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"Current: "</span> . current(<span class="t-attr">$colours</span>) . <span class="t-str">"&lt;br&gt;"</span>;</span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"Next: "</span> . next(<span class="t-attr">$colours</span>) . <span class="t-str">"&lt;br&gt;"</span>;</span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"Previous: "</span> . prev(<span class="t-attr">$colours</span>) . <span class="t-str">"&lt;br&gt;"</span>;</span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"End: "</span> . end(<span class="t-attr">$colours</span>) . <span class="t-str">"&lt;br&gt;"</span>;</span><span class="ln">    <span class="t-kw">echo</span> <span class="t-str">"Reset: "</span> . reset(<span class="t-attr">$colours</span>) . <span class="t-str">"&lt;br&gt;"</span>;</span><span class="ln">    <span class="t-dir">?&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">body</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">html</span><span class="t-punc">&gt;</span></span></pre></div></div>
+<h2 id="output">Output</h2>
+<p class="tryhint" style="margin-top:0">These are real screenshots, taken by running the program with the test data.</p><figure class="shot"><div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">localhost/phpbook/…/pointer-functions.php</span></div><img src="img/p09_1.png" alt="Output" loading="lazy"><figcaption>Output</figcaption></figure>
+<h3>Understanding the output</h3><p>The foreach section lists every element, first by value and then with its index, which is the PHP 8 way of performing the traversal that older programs carried out with <code>each()</code>. The pointer section shows the five values of the first five rows of Table 5.5: the pointer began at &quot;Red&quot;, moved forward to &quot;Green&quot;, came back to &quot;Red&quot;, jumped to &quot;Blue&quot; and returned to &quot;Red&quot;.</p>
+<h2 id="how">How it works</h2><p>The first foreach loop prints the three values on one line, and the second prints each index with its value. These loops do not move the internal pointer, which therefore still stands on &quot;Red&quot; when the pointer functions begin. <code>current()</code> returns &quot;Red&quot; without moving the pointer. <code>next()</code> moves the pointer to &quot;Green&quot; and returns it, and <code>prev()</code> moves it back to &quot;Red&quot;. <code>end()</code> moves the pointer to the last element, &quot;Blue&quot;, and <code>reset()</code> returns it to the first element, &quot;Red&quot;.</p>
+<h2 id="run">Run it yourself</h2>
+<div class="php-runner">
+<script type="application/json">{"entries": ["pointer-functions.php"], "dirs": [], "folder": "ch05"}</script>
+<div class="pr-tabs"><button type="button" data-file="pointer-functions.php" aria-selected="true">pointer-functions.php</button></div>
+<textarea data-file="pointer-functions.php" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="pointer-functions.php (editable)" rows="26">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Array Iteration and Pointer Functions&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;?php
+    $colours = [&quot;Red&quot;, &quot;Green&quot;, &quot;Blue&quot;];
+
+    // Iteration with foreach (PHP 8 replacement for each())
+    echo &quot;&lt;h3&gt;Iteration with foreach&lt;/h3&gt;&quot;;
+    foreach ($colours as $colour) {
+        echo $colour . &quot; &quot;;
+    }
+    echo &quot;&lt;br&gt;&quot;;
+    foreach ($colours as $index =&gt; $colour) {
+        echo &quot;Index $index: $colour&lt;br&gt;&quot;;
+    }
+
+    // Pointer functions
+    echo &quot;&lt;h3&gt;Pointer Functions&lt;/h3&gt;&quot;;
+    echo &quot;Current: &quot; . current($colours) . &quot;&lt;br&gt;&quot;;
+    echo &quot;Next: &quot; . next($colours) . &quot;&lt;br&gt;&quot;;
+    echo &quot;Previous: &quot; . prev($colours) . &quot;&lt;br&gt;&quot;;
+    echo &quot;End: &quot; . end($colours) . &quot;&lt;br&gt;&quot;;
+    echo &quot;Reset: &quot; . reset($colours) . &quot;&lt;br&gt;&quot;;
+    ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+<div class="runner-bar"><span class="pr-name">pointer-functions.php</span>
+  <button class="btn reset-code" type="button">Reset code</button><button class="btn clear-state" type="button" title="Like opening a new private window">Clear cookies &amp; session</button><button class="btn run" type="button">Run ▶</button></div>
+<div class="status">Press <b>Run</b> to open the page in the browser below. You can edit any file first.</div>
+<div class="pr-browser">
+  <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url pr-url">localhost/phpbook/ch05/pointer-functions.php</span>
+  <span class="pr-view"><button type="button" data-view="page" aria-selected="true">Page</button><button type="button" data-view="source" aria-selected="false">HTML sent</button></span></div>
+  <div class="pr-page"><iframe title="Output of the program" sandbox="allow-same-origin allow-forms"></iframe></div>
+  <div class="pr-source" hidden><pre></pre></div>
+  <div class="pr-state" hidden></div>
+</div>
+</div>
+<p class="tryhint">Real PHP 8.3 runs inside your browser (nothing is sent to a server). Forms, links, cookies and sessions work as they do in XAMPP. The first run downloads PHP, so it needs internet and takes a few seconds.</p>
+<p style="margin:14px 0 4px"><b>Try this:</b></p><ul class="tries"><li>Call <code>next()</code> twice before <code>current()</code>.</li><li>Add a fourth colour and run again.</li></ul>
+<h2 id="xampp">Running it in XAMPP</h2><p>Save the file in C:\xampp\htdocs\phpbook\ch05 and open http://<code>localhost/phpbook/ch05/pointer-functions.php</code>.</p>
+<h2 id="mistakes">Common mistakes</h2><ul><li>Calling <code>each()</code> to traverse the array, which stops the script in PHP 8 with Call to undefined function <code>each()</code>.</li><li>Expecting <code>current()</code> to move the pointer.</li><li>Calling <code>next()</code> after <code>end()</code> and treating the returned false as an element.</li><li>Passing an expression, such as the result of another function, to <code>end()</code> instead of a variable, which produces the notice Only variables should be passed by reference.</li><li>Note: This program uses foreach instead of <code>each()</code>, because <code>each()</code> was removed in PHP 8.0. The pointer functions used here are fully supported in PHP 8.</li></ul>
+<h2 id="viva">Viva questions</h2><details><summary>Name the array pointer functions.</summary><div>current(), next(), prev(), reset() and end(). key() gives the key at the pointer.</div></details><details><summary>What does reset() do?</summary><div>It moves the internal pointer to the first element and returns that element.</div></details><details><summary>Which is the usual way to loop through an array in PHP 8?</summary><div>foreach. The old each() function was removed in PHP 8.</div></details>
+<nav class="pnav"><a href="p08.html"><small>← Practical 8</small>Create indexed, associative, and multidimensional arrays and display their elements.</a><a class="next" href="p10.html"><small>Practical 10 →</small>Write a PHP code to demonstrate string cleanup functions.</a></nav>
+</main>
+<div class="wrap"><footer>Appendix to <i>Website Development Using PHP</i> by Dr. Puneet Kumar.</footer></div>
+<script src="assets/app.js?v=1"></script>
+<script src="assets/run.js?v=1"></script>
+</body>
+</html>

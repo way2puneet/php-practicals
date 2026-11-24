@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practical 10: Write a PHP code to demonstrate string cleanup functions. · PHP</title>
+<meta name="description" content="To write a PHP program that demonstrates the string cleanup functions trim(), ltrim() and rtrim().">
+<link rel="stylesheet" href="assets/style.css?v=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233a50c9'/%3E%3Ctext x='16' y='21' font-family='Arial' font-size='11' font-weight='700' fill='white' text-anchor='middle'%3EPHP%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="index.html">PHP <span>· Practicals</span></a>
+  <nav class="topnav"><a href="index.html">Programs</a><a href="setup.html">Setup</a></nav>
+</div></header>
+<main class="wrap">
+<div class="kicker">Practical 10 of 25</div>
+<h1>Write a PHP code to demonstrate string cleanup functions.</h1>
+<p class="lead">Program 6.4: Demonstrating String Cleanup Functions</p>
+<div class="meta"><span class="chip">Book: Program 6.4 (Chapter 6)</span><span class="chip">Runs in this page</span></div>
+<div class="aim"><b>Aim</b>To write a PHP program that demonstrates the string cleanup functions <code>trim()</code>, <code>ltrim()</code> and <code>rtrim()</code>.</div>
+<nav class="toc"><a href="#learn">Concepts</a><a href="#code">Code</a><a href="#output">Output</a><a href="#how">How it works</a><a href="#run">Run it</a><a href="#xampp">In XAMPP</a><a href="#mistakes">Common mistakes</a><a href="#viva">Viva</a></nav>
+<h2 id="learn">Concepts used</h2>
+<p><code>trim()</code>, <code>ltrim()</code>, <code>rtrim()</code>, <code>strlen()</code>, the <code>&lt;pre&gt;</code> element, square brackets as markers.</p>
+<p><b>Test data:</b> Text with two spaces at each end: &quot;  PHP Programming  &quot;; text with hyphens: &quot;--BCA--&quot;.</p>
+<h3>Logic</h3><ol class="steps"><li>Store the text and display it between square brackets with its length.</li><li>Display the result of <code>trim()</code>, <code>ltrim()</code> and <code>rtrim()</code> between square brackets with the lengths.</li><li>Remove hyphens with <code>trim()</code> and a second argument.</li></ol>
+<h2 id="code">Code</h2>
+<div class="code"><div class="code-tabs" role="tablist"><button role="tab" aria-selected="true">trim.php</button><span class="spacer"></span><button class="act dl" title="Download this file">Download</button><button class="act copy" title="Copy this file">Copy</button></div><div class="code-panel active" data-src="code/p10__trim.php" data-name="trim.php"><pre class="lang-php"><span class="ln"><span class="t-dir">&lt;!DOCTYPE html&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">html</span> <span class="t-attr">lang</span>=<span class="t-val">"en"</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">head</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">meta</span> <span class="t-attr">charset</span>=<span class="t-val">"UTF-8"</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">title</span><span class="t-punc">&gt;</span>String Cleanup Functions<span class="t-punc">&lt;/</span><span class="t-tag">title</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">head</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;</span><span class="t-tag">body</span><span class="t-punc">&gt;</span></span><span class="ln">    <span class="t-punc">&lt;</span><span class="t-tag">pre</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-dir">&lt;?php</span></span><span class="ln"><span class="t-attr">$text</span> = <span class="t-str">"  PHP Programming  "</span>;       <span class="t-com">// two spaces at each end</span></span><span class="ln"> </span><span class="ln"><span class="t-kw">echo</span> <span class="t-str">"Original:    ["</span> . <span class="t-attr">$text</span> . <span class="t-str">"]  length "</span> . strlen(<span class="t-attr">$text</span>) . <span class="t-str">"\n"</span>;</span><span class="ln"><span class="t-kw">echo</span> <span class="t-str">"After trim:  ["</span> . trim(<span class="t-attr">$text</span>) . <span class="t-str">"]  length "</span> . strlen(trim(<span class="t-attr">$text</span>)) . <span class="t-str">"\n"</span>;</span><span class="ln"><span class="t-kw">echo</span> <span class="t-str">"After ltrim: ["</span> . ltrim(<span class="t-attr">$text</span>) . <span class="t-str">"]  length "</span> . strlen(ltrim(<span class="t-attr">$text</span>)) . <span class="t-str">"\n"</span>;</span><span class="ln"><span class="t-kw">echo</span> <span class="t-str">"After rtrim: ["</span> . rtrim(<span class="t-attr">$text</span>) . <span class="t-str">"]  length "</span> . strlen(rtrim(<span class="t-attr">$text</span>)) . <span class="t-str">"\n"</span>;</span><span class="ln"> </span><span class="ln"><span class="t-attr">$code</span> = <span class="t-str">"--BCA--"</span>;</span><span class="ln"><span class="t-kw">echo</span> <span class="t-str">"Hyphens removed: ["</span> . trim(<span class="t-attr">$code</span>, <span class="t-str">"-"</span>) . <span class="t-str">"]\n"</span>;</span><span class="ln"><span class="t-dir">?&gt;</span></span><span class="ln">    <span class="t-punc">&lt;/</span><span class="t-tag">pre</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">body</span><span class="t-punc">&gt;</span></span><span class="ln"><span class="t-punc">&lt;/</span><span class="t-tag">html</span><span class="t-punc">&gt;</span></span></pre></div></div>
+<h2 id="output">Output</h2>
+<p class="tryhint" style="margin-top:0">These are real screenshots, taken by running the program with the test data.</p><figure class="shot"><div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url">localhost/phpbook/…/trim.php</span></div><img src="img/p10_1.png" alt="Output" loading="lazy"><figcaption>Output</figcaption></figure>
+<h3>Understanding the output</h3><p>The positions of the brackets and the lengths confirm the work of each function: both ends cleaned by <code>trim()</code>, only the left end by <code>ltrim()</code> and only the right end by <code>rtrim()</code>. The variable <code>$text</code> itself was not changed, which is why every line begins from the same original string. In form processing, <code>trim()</code> is normally applied to every typed value before it is checked or stored.</p>
+<h2 id="how">How it works</h2><p>The square brackets show exactly where each string begins and ends, and the <code>&lt;pre&gt;</code> element prevents the browser from collapsing the spaces. The original string has 19 characters: 15 characters of text and four spaces. <code>trim()</code> removes all four spaces, leaving 15 characters. <code>ltrim()</code> removes the two spaces at the beginning only, and <code>rtrim()</code> removes the two at the end only, so each of them leaves 17 characters. The space between &quot;PHP&quot; and &quot;Programming&quot; is never removed. In the last line, <code>trim()</code> with the second argument &quot;-&quot; removes the hyphens from both ends.</p>
+<h2 id="run">Run it yourself</h2>
+<div class="php-runner">
+<script type="application/json">{"entries": ["trim.php"], "dirs": [], "folder": "ch06"}</script>
+<div class="pr-tabs"><button type="button" data-file="trim.php" aria-selected="true">trim.php</button></div>
+<textarea data-file="trim.php" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="trim.php (editable)" rows="24">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;String Cleanup Functions&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;pre&gt;
+&lt;?php
+$text = &quot;  PHP Programming  &quot;;       // two spaces at each end
+
+echo &quot;Original:    [&quot; . $text . &quot;]  length &quot; . strlen($text) . &quot;\n&quot;;
+echo &quot;After trim:  [&quot; . trim($text) . &quot;]  length &quot; . strlen(trim($text)) . &quot;\n&quot;;
+echo &quot;After ltrim: [&quot; . ltrim($text) . &quot;]  length &quot; . strlen(ltrim($text)) . &quot;\n&quot;;
+echo &quot;After rtrim: [&quot; . rtrim($text) . &quot;]  length &quot; . strlen(rtrim($text)) . &quot;\n&quot;;
+
+$code = &quot;--BCA--&quot;;
+echo &quot;Hyphens removed: [&quot; . trim($code, &quot;-&quot;) . &quot;]\n&quot;;
+?&gt;
+    &lt;/pre&gt;
+&lt;/body&gt;
+&lt;/html&gt;</textarea>
+<div class="runner-bar"><span class="pr-name">trim.php</span>
+  <button class="btn reset-code" type="button">Reset code</button><button class="btn clear-state" type="button" title="Like opening a new private window">Clear cookies &amp; session</button><button class="btn run" type="button">Run ▶</button></div>
+<div class="status">Press <b>Run</b> to open the page in the browser below. You can edit any file first.</div>
+<div class="pr-browser">
+  <div class="browser-bar"><span class="dots"><i></i><i></i><i></i></span><span class="url pr-url">localhost/phpbook/ch06/trim.php</span>
+  <span class="pr-view"><button type="button" data-view="page" aria-selected="true">Page</button><button type="button" data-view="source" aria-selected="false">HTML sent</button></span></div>
+  <div class="pr-page"><iframe title="Output of the program" sandbox="allow-same-origin allow-forms"></iframe></div>
+  <div class="pr-source" hidden><pre></pre></div>
+  <div class="pr-state" hidden></div>
+</div>
+</div>
+<p class="tryhint">Real PHP 8.3 runs inside your browser (nothing is sent to a server). Forms, links, cookies and sessions work as they do in XAMPP. The first run downloads PHP, so it needs internet and takes a few seconds.</p>
+<p style="margin:14px 0 4px"><b>Try this:</b></p><ul class="tries"><li>Put spaces and tabs around a different word in <code>$text</code>.</li><li>Use <code>trim($code, "-*")</code> on a string such as <code>"**BCA--"</code>.</li></ul>
+<h2 id="xampp">Running it in XAMPP</h2><p>Save the file in C:\xampp\htdocs\phpbook\ch06 and open http://<code>localhost/phpbook/ch06/trim.php</code>.</p>
+<h2 id="mistakes">Common mistakes</h2><ul><li>Calling trim(<code>$text</code>); as a statement on its own and expecting <code>$text</code> to change; the result must be stored, as in <code>$text</code> = trim(<code>$text</code>);.</li><li>Displaying the result without markers or <code>&lt;pre&gt;</code>, so that the removal of spaces cannot be seen.</li><li>Expecting <code>trim()</code> to remove the spaces between words.</li></ul>
+<h2 id="viva">Viva questions</h2><details><summary>Difference between trim(), ltrim() and rtrim()?</summary><div>trim() removes spaces from both ends, ltrim() only from the left (start), rtrim() only from the right (end).</div></details><details><summary>Why is trim() important in form processing?</summary><div>Users often type extra spaces; trim() removes them so that checks such as empty() and comparisons work correctly.</div></details><details><summary>Does trim() change the original string?</summary><div>No. It returns a new string; the original variable stays the same.</div></details>
+<nav class="pnav"><a href="p09.html"><small>← Practical 9</small>Write a PHP code to demonstrate various loop iterative functions.</a><a class="next" href="p11.html"><small>Practical 11 →</small>Write a PHP code to demonstrate string case functions.</a></nav>
+</main>
+<div class="wrap"><footer>Appendix to <i>Website Development Using PHP</i> by Dr. Puneet Kumar.</footer></div>
+<script src="assets/app.js?v=1"></script>
+<script src="assets/run.js?v=1"></script>
+</body>
+</html>
