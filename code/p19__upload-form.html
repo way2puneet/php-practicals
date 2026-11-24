@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Photograph</title>
+</head>
+<body>
+    <h2>Upload Student Photograph</h2>
+    <form action="upload.php" method="post" enctype="multipart/form-data">
+        <p>
+            <label for="roll">Roll Number:</label>
+            <input type="text" id="roll" name="roll">
+        </p>
+        <p>
+            <label for="photo">Photograph (JPEG or PNG, up to 500 KB):</label>
+            <input type="file" id="photo" name="photo" accept="image/jpeg,image/png">
+        </p>
+        <input type="submit" value="Upload">
+    </form>
+</body>
+</html>
