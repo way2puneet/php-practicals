@@ -1,0 +1,91 @@
+<?php
+// ---- Request emulation for running book programs in the browser (php-wasm). ----
+$__pk = json_decode(file_get_contents('/tmp/__pk_req.json'), true);
+$_SERVER['REQUEST_METHOD'] = $__pk['method'];
+parse_str($__pk['get'], $_GET); parse_str($__pk['post'], $_POST);
+$_COOKIE = $__pk['cookies']; $_FILES = $__pk['files'] ?: [];
+$_REQUEST = array_merge($_GET, $_POST);
+$_SERVER['PHP_SELF'] = $_SERVER['SCRIPT_NAME'] = '/' . $__pk['entry'];
+$_SERVER['HTTP_HOST'] = $_SERVER['SERVER_NAME'] = 'localhost';
+$_SERVER['QUERY_STRING'] = $__pk['get'];
+$_SERVER['REQUEST_URI'] = '/' . $__pk['entry'] . ($__pk['get'] !== '' ? '?' . $__pk['get'] : '');
+$_SERVER['HTTP_USER_AGENT'] = 'Mozilla/5.0 (PHP running in the browser)';
+$_SERVER['REMOTE_ADDR'] = '127.0.0.1';
+$GLOBALS['__pk_out'] = ['cookies' => [], 'location' => null, 'session' => null, 'session_destroyed' => false];
+
+class __PkExit extends Error {}
+function __pk_exit($status = null) { if (is_string($status)) echo $status; throw new __PkExit(); }
+function __pk_setcookie($name, $value = "", $expires = 0, ...$rest) {
+    if (is_array($expires)) $expires = $expires['expires'] ?? 0;
+    $GLOBALS['__pk_out']['cookies'][] = [(string)$name, (string)$value, (int)$expires];
+    return true;
+}
+function __pk_header($h, ...$rest) {
+    if (preg_match('/^\s*Location:\s*(.+)$/i', $h, $m)) $GLOBALS['__pk_out']['location'] = trim($m[1]);
+}
+function __pk_is_uploaded_file($f) { return is_string($f) && str_starts_with($f, '/tmp/__pk_upload_') && is_file($f); }
+function __pk_move_uploaded_file($f, $to) {
+    if (!__pk_is_uploaded_file($f) || !is_dir(dirname($to))) return false;
+    return copy($f, $to);
+}
+
+// Session storage kept by the page (in JavaScript) between requests
+class __PkSession implements SessionHandlerInterface {
+    public function open($p, $n): bool { return true; }
+    public function close(): bool { return true; }
+    public function read($id): string|false { return $GLOBALS['__pk']['session'] ?? ''; }
+    public function write($id, $data): bool { $GLOBALS['__pk_out']['session'] = $data; return true; }
+    public function destroy($id): bool { $GLOBALS['__pk_out']['session'] = ''; $GLOBALS['__pk_out']['session_destroyed'] = true; return true; }
+    public function gc($max): int|false { return 0; }
+}
+ini_set('session.use_cookies', '0');
+session_set_save_handler(new __PkSession(), false);
+session_id($__pk['session_id'] ?? 'pkdemo');
+
+// Rewrite exit/die and the few header-related functions, using PHP's own tokenizer
+function __pk_transform($src) {
+    $map = ['setcookie' => '__pk_setcookie', 'header' => '__pk_header',
+            'move_uploaded_file' => '__pk_move_uploaded_file', 'is_uploaded_file' => '__pk_is_uploaded_file'];
+    $tokens = token_get_all($src); $out = ''; $n = count($tokens);
+    for ($i = 0; $i < $n; $i++) {
+        $t = $tokens[$i];
+        if (is_array($t) && $t[0] === T_EXIT) {
+            $j = $i + 1; while ($j < $n && is_array($tokens[$j]) && $tokens[$j][0] === T_WHITESPACE) $j++;
+            $out .= ($j < $n && $tokens[$j] === '(') ? '__pk_exit' : '__pk_exit()';
+            continue;
+        }
+        if (is_array($t) && $t[0] === T_STRING && isset($map[strtolower($t[1])])) {
+            $j = $i + 1; while ($j < $n && is_array($tokens[$j]) && $tokens[$j][0] === T_WHITESPACE) $j++;
+            $k = $i - 1; while ($k >= 0 && is_array($tokens[$k]) && $tokens[$k][0] === T_WHITESPACE) $k--;
+            $prev = $k >= 0 ? $tokens[$k] : null;
+            $isCall = $j < $n && $tokens[$j] === '(';
+            $isMember = is_array($prev) && in_array($prev[0], [T_OBJECT_OPERATOR, T_DOUBLE_COLON, T_FUNCTION, T_NULLSAFE_OBJECT_OPERATOR], true);
+            if ($isCall && !$isMember) { $out .= $map[strtolower($t[1])]; continue; }
+        }
+        $out .= is_array($t) ? $t[1] : $t;
+    }
+    return $out;
+}
+function __pk_copy_tree($from, $to) {
+    if (!is_dir($to)) mkdir($to, 0777, true);
+    foreach (scandir($from) as $f) {
+        if ($f === '.' || $f === '..') continue;
+        $a = "$from/$f"; $b = "$to/$f";
+        if (is_dir($a)) { __pk_copy_tree($a, $b); continue; }
+        $src = file_get_contents($a);
+        file_put_contents($b, str_ends_with($f, '.php') ? __pk_transform($src) : $src);
+    }
+}
+__pk_copy_tree('/app', '/srv');
+chdir(dirname('/srv/' . $__pk['entry']));
+try {
+    include '/srv/' . $__pk['entry'];
+} catch (__PkExit $e) {
+}
+if (session_status() === PHP_SESSION_ACTIVE) session_write_close();
+// copy back files the program created (for example uploaded images) so later requests see them
+if (is_dir('/srv')) foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator('/srv', FilesystemIterator::SKIP_DOTS)) as $f) {
+    $rel = substr($f->getPathname(), 5);
+    if (!file_exists('/app/' . $rel)) { @mkdir(dirname('/app/' . $rel), 0777, true); copy($f->getPathname(), '/app/' . $rel); $GLOBALS['__pk_out']['new_files'][] = $rel; }
+}
+file_put_contents('/tmp/__pk_out.json', json_encode($GLOBALS['__pk_out']));
